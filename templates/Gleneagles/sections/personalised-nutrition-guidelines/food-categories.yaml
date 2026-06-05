@@ -1,0 +1,87 @@
+vegetables:
+  - Asparagus
+  - Potato
+  - Eggplant
+  - Beet
+  - Pumpkin
+  - Kale
+  - Bok Choy
+  - Radish
+  - Kimchi
+  - Carrot
+  - Seaweed (fresh)
+  - Leek
+  - Chicory (root)
+  - Spinach
+  - Sweet Potato
+  - Cucumber
+  - Tomato
+  - Water chestnuts
+  - Mung bean sprout
+  - Onion
+
+proteins_fats:
+  - Almonds
+  - Yogurt (plain)
+  - Olive Oil
+  - Avocado
+  - Whole Milk (cow)
+  - Pistachios
+  - Chickpeas
+  - Cheese (cow)
+  - Soy Milk
+  - Coconut
+  - Butter (cow)
+  - Tofu
+  - Heavy Cream
+  - Black Beans
+  - Pumpkin Seeds
+  - Lentils
+  - Chestnuts
+  - Cheese (sheep)
+  - Fish
+  - Red Meat
+
+fruits_grains:
+  - Apple
+  - Strawberry
+  - Jackfruit
+  - Cranberry
+  - Buckwheat
+  - Watermelon
+  - Dragon Fruit
+  - Pineapple
+  - Raspberry
+  - Grapefruit
+  - Orange
+  - Rye
+  - Grapes
+  - Banana
+  - Mango
+  - Lychee
+  - Oats
+  - Papaya
+  - Rice Noodle
+  - Wheat
+
+spices:
+  - Cane Sugar
+  - Miso
+  - Turmeric
+  - Coffee
+  - Peppermint
+  - Thyme
+  - Ginger
+  - Honey
+  - Vinegar
+  - Tea
+  - Coriander
+  - Mustard Seed
+  - Maple Syrup
+  - Black Pepper
+  - Horseradish
+  - Sea Salt or Himalayan Salt
+  - Rosemary
+  - Chili Powder
+  - Cocoa
+  - Garlic

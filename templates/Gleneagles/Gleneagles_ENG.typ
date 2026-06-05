@@ -6,6 +6,7 @@
 #import "sections/health-conditions-overview/health-conditions-overview.typ": health-conditions-overview
 #import "sections/analysis-results-of-microbiome/analysis-results-of-microbiome.typ": analysis-results-of-microbiome
 #import "sections/disease-risks-assessment/disease-risks-assessment.typ": disease-risks-assessment
+#import "sections/personalised-nutrition-guidelines/personalised-nutrition-guidelines.typ": personalised-nutrition-guidelines
 #import "sections/references.typ": references
 
 #set document(
@@ -55,6 +56,7 @@
   health-conditions-overview,
   analysis-results-of-microbiome,
   disease-risks-assessment,
+  personalised-nutrition-guidelines,
 )
 
 #counter(heading).update(1)

@@ -1,0 +1,63 @@
+name: Build (Windows, Linux, macOS)
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            rust_target: x86_64-unknown-linux-gnu
+          - os: windows-latest
+            rust_target: x86_64-pc-windows-msvc
+          - os: macos-latest
+            rust_target: aarch64-apple-darwin
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Install Rust
+        uses: actions-rust-lang/setup-rust-toolchain@v1
+
+      - name: Add Rust target
+        run: rustup target add ${{ matrix.rust_target }}
+
+      - name: Build (release)
+        run: cargo build --release --target ${{ matrix.rust_target }}
+
+      - name: Collect artifacts (name per OS/target)
+        shell: bash
+        run: |
+          set -euo pipefail
+          target_dir="target/${{ matrix.rust_target }}/release"
+          mkdir -p dist
+          if compgen -G "${target_dir}/*" > /dev/null; then
+            cp -v "${target_dir}/"* dist/ || true
+          fi
+
+      - name: Zip artifacts
+        shell: bash
+        run: |
+          set -euo pipefail
+          archive="generate-report-${{ runner.os }}-${{ matrix.rust_target }}.zip"
+          if command -v zip >/dev/null 2>&1; then
+            zip -r "$archive" dist
+          else
+            7z a "$archive" dist >/dev/null
+          fi
+          echo "archive=$archive" >> "$GITHUB_OUTPUT"
+        id: zip
+
+      - name: Upload artifacts for download
+        uses: actions/upload-artifact@v7
+        with:
+          name: ${{ steps.zip.outputs.archive }}
+          path: ${{ steps.zip.outputs.archive }}
+          if-no-files-found: error

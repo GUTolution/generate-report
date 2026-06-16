@@ -38,6 +38,7 @@ impl Error for StringError {}
 #[derive(Debug, Clone, IntoDict)]
 struct TemplateInput {
     input_json: Bytes,
+    production: bool,
     args: Dict,
 }
 
@@ -123,12 +124,14 @@ fn compile(
     let mut reader = BufReader::new(OpenOptions::new().read(true).open(input)?);
     let mut input_json = Vec::new();
     reader.read_to_end(&mut input_json)?;
-    println!("Read input json file to end: {}B", input_json.len());
     let input_json = Bytes::new(input_json);
-    println!("Deserialized input_json into: {}B", input_json.len());
-    let template_input = TemplateInput { input_json, args };
+    let template_input = TemplateInput {
+        input_json,
+        args,
+        production: true,
+    };
     println!(
-        "Compiling template: {template_display_name} ({selected_template})\n with template input:\n{template_input:?}"
+        "Compiling template: {template_display_name} ({selected_template})"
     );
     match build_engine(&selected_template)?
         .compile_with_input(template_input.into_dict())

@@ -6,7 +6,9 @@
 #import "sections/health-conditions-overview/health-conditions-overview.typ": health-conditions-overview
 #import "sections/analysis-results-of-microbiome/analysis-results-of-microbiome.typ": analysis-results-of-microbiome
 #import "sections/disease-risks-assessment/disease-risks-assessment.typ": disease-risks-assessment
-#import "sections/personalised-nutrition-guidelines/personalised-nutrition-guidelines.typ": personalised-nutrition-guidelines
+#import "sections/personalised-nutrition-guidelines/personalised-nutrition-guidelines.typ": (
+  personalised-nutrition-guidelines,
+)
 #import "sections/appendix/appendix.typ": appendix
 
 #set document(
@@ -14,9 +16,10 @@
   author: "GUTolution Ltd.",
 )
 
-#let report-json = sys.inputs.at("report_json")
+#let production = sys.inputs.at("production", default: false)
+#let input-json = if production { sys.inputs.at("input_json") } else { "reference/NEUAS2639_Gleneagles_Report.json" }
 #let report = (
-  json(report-json)
+  json(input-json)
     + (
       ("testing-item", "NGS Gut Microbiome Health Screening Test"),
       (
@@ -58,7 +61,7 @@
   analysis-results-of-microbiome,
   disease-risks-assessment,
   personalised-nutrition-guidelines,
-  appendix
+  appendix,
 )
 
 #counter(heading).update(1)
@@ -66,5 +69,5 @@
   let default-page(_, _) = warn[TODO. Do not release.]
 
   sections.at(i, default: default-page)(section, report)
-  if i != report.sections.len() - 1 {pagebreak()}
+  if i != report.sections.len() - 1 { pagebreak() }
 }

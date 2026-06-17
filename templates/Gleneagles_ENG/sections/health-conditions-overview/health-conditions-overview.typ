@@ -10,7 +10,7 @@
 
 #let health-conditions-overview(section, report) = page(margin: (x: 0pt))[
   #pad(x: 2.3cm)[
-    #section-heading[#section.zh_hk\ #section.en]
+    #section-heading[#i18n.at(section).zh_hk\ #section]
     #v(1.5cm)
     #align(center, slider(
       value: report.health_condition_overview,

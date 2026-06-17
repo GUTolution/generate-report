@@ -1,7 +1,7 @@
 #import "../../lib.typ": *
 
 #let disease-risks-assessment(section, report) = page(margin: (bottom: 0cm))[
-  #section-heading[#section.zh_hk\ #section.en]
+  #section-heading[#i18n.at(section).zh_hk\ #section]
 
   #let disease-group-img = (
     "IBS - Diarrhea": "images/ibs-diarrhea.png",
@@ -63,9 +63,9 @@
           name: "Mental Disease",
           risk: report.disease_domains.at("Metabolism"),
           diseases: (
-            "Diabetes",
-            "NAFLD",
-            "Hormonal Imbalance",
+            "Sleep Disorder",
+            "Anxiety",
+            "Depression",
           ),
         ),
       ),
@@ -227,19 +227,24 @@
     stack(
       stack(
         dir: ltr,
-        pad(left: 0.7em, top: 0.7em, par(leading: 0.4em, text(
+        box(pad(left: 0.7em, top: 0.7em, par(leading: 0.7em, text(
           size: 11pt,
-        )[*#id - #(i18n.at(bacteria.name).zh_hk)\ #bacteria.name*])),
-        align(top + end, pad(0.7pt, box(fill: rgb(deficient-abundant-colors.at(bacteria.level - 1)), width: 28%, pad(
-          0.45em,
-          align(center, par(leading: 0.3em, justify: false, text(
-            size: 9pt,
-            weight: "bold",
-            fill: white,
-          )[#deficient-abundant-caption.at(bacteria.level - 1).en])),
-        )))),
+        )[*#id - #(i18n.at(bacteria.name).zh_hk)\ #text(size: 10pt, bacteria.name)*]))),
+        align(top + right, pad(0.7pt, box(
+          fill: rgb(deficient-abundant-colors.at(bacteria.level - 1)),
+          width: 28%,
+          height: 2.5em,
+          pad(
+            0.45em,
+            align(center + horizon, par(leading: 0.3em, justify: false, text(
+              size: if deficient-abundant-caption.at(bacteria.level - 1).en.len() > 10 { 9pt } else { 12pt },
+              weight: "bold",
+              fill: white,
+            )[#deficient-abundant-caption.at(bacteria.level - 1).en])),
+          ),
+        ))),
       ),
-      pad(0.7em, text(size: 9pt, bacteria-effect)),
+      pad(0.7em, par(justify: false, leading: 0.4em, text(size: 9pt, bacteria-effect))),
     ),
   )
 
@@ -248,6 +253,7 @@
     id-prefix: "PB",
     bacteria-effects-for: "Gut Health",
     bacteria-index-range: (0, 0),
+    bacteria-id: range(0, 0),
     card-index-offset: 0,
     bacteria-effects: (none,),
   ) = {
@@ -265,7 +271,7 @@
         grid.header(
           grid.cell(
             colspan: 2,
-            pad(bottom: 0.5em, text(fill: primary.darken(30%), weight: "bold", size: 14pt, title)),
+            pad(bottom: 0.7em, text(fill: primary.darken(30%), weight: "bold", size: 14pt, title)),
           ),
         ),
         ..for (i, bacteria) in report
@@ -274,9 +280,13 @@
           .slice(bacteria-start-index, bacteria-end-index)
           .enumerate() {
           (
-            bacteria-summary([#id-prefix #(card-index-offset + i + 1)], bacteria, bacteria-effects.at(
-              bacteria-start-index + i,
-            )),
+            bacteria-summary(
+              [#id-prefix #bacteria-id.at(i, default: (card-index-offset + i + 1))],
+              bacteria,
+              bacteria-effects.at(
+                bacteria-start-index + i,
+              ),
+            ),
           )
         },
       )
@@ -377,6 +387,13 @@
       id-prefix: "CB",
     )
   ]
+
+  #pagebreak()
+  #par(leading: 0.5em, text(
+    fill: secondary.darken(20%),
+    size: 16pt,
+    weight: "bold",
+  )[腸道健康相關菌種\ Gut Health Related Strains])
   #box(
     fill: primary.lighten(90%),
     stroke: secondary.lighten(40%) + 1.5pt,
@@ -465,18 +482,25 @@
     #bacteria-summary-grid(
       title: [有害菌 Pathogenic Bacteria],
       bacteria-effects-for: "Metabolism",
-      bacteria-index-range: (7, 9),
+      bacteria-index-range: (7, 10),
       bacteria-effects: bacteria-effects-metabolism,
       id-prefix: "HB",
     )
     #bacteria-summary-grid(
       title: [共生菌 Commensal Bacteria],
       bacteria-effects-for: "Metabolism",
-      bacteria-index-range: (9, 13),
+      bacteria-index-range: (10, 14),
       bacteria-effects: bacteria-effects-metabolism,
       id-prefix: "CB",
     )
   ]
+
+  #pagebreak()
+  #par(leading: 0.5em, text(
+    fill: secondary.darken(20%),
+    size: 16pt,
+    weight: "bold",
+  )[代謝水平相關菌種\ Metabolism Related Strains])
   #box(
     fill: primary.lighten(90%),
     stroke: secondary.lighten(40%) + 1.5pt,
@@ -485,7 +509,7 @@
     #bacteria-summary-grid(
       title: [共生菌 Commensal Bacteria],
       bacteria-effects-for: "Metabolism",
-      bacteria-index-range: (13, none),
+      bacteria-index-range: (14, none),
       card-index-offset: 4,
       bacteria-effects: bacteria-effects-metabolism,
       id-prefix: "CB",
@@ -555,6 +579,7 @@
       title: [益生菌 Probiotics],
       bacteria-effects-for: "Mental Health",
       bacteria-index-range: (0, 5),
+      bacteria-id: (1, 3, 4, 6, 7),
       bacteria-effects: bacteria-effects-mental-health,
       id-prefix: "PB",
     )
@@ -562,6 +587,7 @@
       title: [共生菌 Commensal Bacteria],
       bacteria-effects-for: "Mental Health",
       bacteria-index-range: (5, none),
+      bacteria-id: (9, 14, 16, 17, 19),
       bacteria-effects: bacteria-effects-mental-health,
       id-prefix: "CB",
     )
@@ -630,6 +656,7 @@
       title: [共生菌 Commensal Bacteria],
       bacteria-effects-for: "Cognition",
       bacteria-index-range: (7, none),
+      bacteria-id: (10, 16, 17),
       bacteria-effects: bacteria-effects-cognition,
       id-prefix: "CB",
     )
@@ -691,6 +718,7 @@
       title: [益生菌 Probiotics],
       bacteria-effects-for: "Autoimmunity",
       bacteria-index-range: (0, 4),
+      bacteria-id: (1, 4, 6, 7),
       bacteria-effects: bacteria-effects-autoimmunity,
       id-prefix: "PB",
     )
@@ -705,10 +733,18 @@
       title: [共生菌 Commensal Bacteria],
       bacteria-effects-for: "Autoimmunity",
       bacteria-index-range: (8, 14),
+      bacteria-id: (1, 4, 6, 10, 11, 12),
       bacteria-effects: bacteria-effects-autoimmunity,
       id-prefix: "CB",
     )
   ]
+
+  #pagebreak()
+  #par(leading: 0.5em, text(
+    fill: secondary.darken(20%),
+    size: 16pt,
+    weight: "bold",
+  )[自體免疫相關菌種\ Autoimmunity Related Strains])
   #box(
     fill: primary.lighten(90%),
     stroke: secondary.lighten(40%) + 1.5pt,
@@ -718,6 +754,7 @@
       title: [共生菌 Commensal Bacteria],
       bacteria-effects-for: "Autoimmunity",
       bacteria-index-range: (14, none),
+      bacteria-id: range(13, 21),
       bacteria-effects: bacteria-effects-autoimmunity,
       id-prefix: "CB",
     )

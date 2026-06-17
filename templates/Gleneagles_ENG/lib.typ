@@ -11,7 +11,7 @@
 #let constructive = rgb("#A6BAAF")
 #let on-constructive = rgb("#415B4D")
 
-#let subtitle(body) = text(body, weight: "extrabold", size: 16pt, fill: neutral.darken(45%))
+#let subtitle(body) = text(body, weight: "extrabold", size: 16pt, fill: rgb("6D6F71"))
 #let header-text(body) = text(body, weight: "extrabold", size: 12pt, fill: primary.darken(20%).transparentize(15%))
 #let footer-text(body) = text(body, size: 14pt, fill: neutral)
 
@@ -76,7 +76,7 @@
       place(top + start, pad(top: 8pt, left: 8pt, image("images/gleneagles-header-logo-full.png")))
     }
     #place(top + end, pad(top: 20pt, right: 15pt, header-text[
-      NGS 腸道微生態檢測\
+      NGS 腸道微生態健康檢測\
       NGS Gut Microbiome Health Screening Test
     ]))
     #header-text[User Name |] #h(1em)#report.report_information.user_full_name #h(4em) #header-text[Report Date |] #h(
@@ -212,10 +212,10 @@
 )
 
 #let style(body) = {
-  show title: set text(fill: neutral.darken(45%), size: 36pt)
+  show title: set text(fill: rgb("#6D6F71"), size: 36pt)
   show heading: set text(weight: "extrabold", size: 24pt, fill: primary.darken(20%))
   show heading.where(level: 2): set text(weight: "extrabold", size: 24pt, fill: primary.darken(20%))
-  show heading.where(level: 2): it => align(center, underline(it))
+  show heading.where(level: 2): it => align(center, underline(offset: 5pt, stroke: 1pt, it))
   show heading.where(level: 3): it => align(center, text(
     weight: "bold",
     size: 18pt,
@@ -241,7 +241,7 @@
 }
 
 #let body-style(body) = {
-  set par(justify: true, spacing: 1em)
+  set par(justify: true)
   set page(margin: (x: 1.8cm))
   set text(size: 11pt, hyphenate: false)
 

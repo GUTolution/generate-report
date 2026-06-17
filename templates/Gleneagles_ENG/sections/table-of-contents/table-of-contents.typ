@@ -4,13 +4,13 @@
   #let outline-row(i, section, page) = (
     table.cell(line(angle: 90deg, stroke: 8pt + primary.darken(20%), length: 50pt)),
     table.cell(text(size: 42pt, weight: "black", leftpad(2, "0", i))),
-    table.cell(text(fill: secondary.darken(20%), size: 16pt, weight: "bold")[#section.zh_hk\ #section.en]),
+    table.cell(text(fill: secondary.darken(20%), size: 16pt, weight: "bold")[#i18n.at(section).zh_hk\ #section]),
     table.cell(align(end, text(fill: secondary.darken(20%), size: 17pt, weight: "extrabold")[#page])),
   )
 
   #place(left, dx: -200pt, image("images/anatomy.png"))
   #let outline-counter = counter("outline")
-  #show outline.entry: it => if to-string(it.element.body).starts-with(regex("^[0-9]")) {
+  #show outline.entry: it => if to-string(it.element.body).starts-with(regex("^[0-9]")) { // Only show numbered sections
     outline-counter.step()
     let i = outline-counter.get().at(0)
     let page = it.element.location().page() - 1 // Hack: no idea why - 1 is needed

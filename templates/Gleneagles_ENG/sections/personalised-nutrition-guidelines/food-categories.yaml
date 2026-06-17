@@ -13,10 +13,10 @@ vegetables:
   - Leek
   - Chicory (root)
   - Spinach
-  - Sweet Potato
+  - Yam or Sweet Potato
   - Cucumber
   - Tomato
-  - Water chestnuts
+  - Water Chestnuts
   - Mung bean sprout
   - Onion
 
@@ -29,8 +29,8 @@ proteins_fats:
   - Pistachios
   - Chickpeas
   - Cheese (cow)
-  - Soy Milk
-  - Coconut
+  - Soy Milk (unsweetened)
+  - Coconut Meat
   - Butter (cow)
   - Tofu
   - Heavy Cream
@@ -38,9 +38,9 @@ proteins_fats:
   - Pumpkin Seeds
   - Lentils
   - Chestnuts
-  - Cheese (sheep)
+  - Sheep Cheese
   - Fish
-  - Red Meat
+  - Red meat
 
 fruits_grains:
   - Apple

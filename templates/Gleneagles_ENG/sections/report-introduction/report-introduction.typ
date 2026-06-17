@@ -1,11 +1,13 @@
 #import "../../lib.typ": *
 
 #let report-introduction(section, report) = [
-  #section-heading[#section.zh_hk\ #section.en]
+  #section-heading[#i18n.at(section).zh_hk\ #section]
   #box(
     fill: primary.transparentize(90%),
     inset: 8pt,
-  )[Your gut microbiome is a unique ecosystem within your body, consisting of trillions of microorganisms, including bacteria, viruses, fungi, and other microbes, primarily residing in your intestines. These tiny organisms play a crucial role in maintaining overall health, influencing everything from digestion and immunity to mood and metabolism. Each person's gut microbiome is as unique as a fingerprint, shaped by factors such as diet, lifestyle, environment, and genetics.
+  )[
+    #set par(leading: 0.7em, spacing: 1.5em)
+    Your gut microbiome is a unique ecosystem within your body, consisting of trillions of microorganisms, including bacteria, viruses, fungi, and other microbes, primarily residing in your intestines. These tiny organisms play a crucial role in maintaining overall health, influencing everything from digestion and immunity to mood and metabolism. Each person's gut microbiome is as unique as a fingerprint, shaped by factors such as diet, lifestyle, environment, and genetics.
 
     A balanced gut microbiome helps sustain a healthy digestive system, supports immune function, and even impacts mental well-being. However, when the gut microbiome becomes imbalanced --- often due to poor diet, stress, or antibiotic use --- it can lead to a range of health issues, from digestive discomfort and inflammation to chronic diseases.
 
@@ -37,7 +39,7 @@
       #figure-box(bottom + left, 35pt, -8pt, "images/habit.png")[Habit]
       #figure-box(bottom + right, -35pt, -8pt, font-size: 14.7pt, "images/supplement.png")[Supplement]
     ])
-    #place(top + right, dx: -60pt, dy: 35pt, image("images/curved-arrow-2.png"))
+    #place(top + right, dx: -60pt, dy: 20pt, image("images/curved-arrow-2.png"))
     #figure-box(bottom + right, -20pt, 0pt, font-size: 13pt, "images/overall-health.png")[Overall Health]
   ]
   #v(0.5em)
@@ -125,22 +127,24 @@
 
     == Choosing Personalised Probiotics
     Precision probiotics take Personalisation to a new level by recommending probiotic strains that are best suited for you, tailored to your unique gut microbiome and health profile. Through advanced microbiome analysis, we can identify specific bacterial strains that are most beneficial for you based on your health report. This approach maximizes the effectiveness of probiotics, ensuring they address your individual gut needs and support your health goals—whether it is improving digestion, boosting immunity, or balancing the microbiota. Precision probiotics offer a targeted, scientifically supported solution to help you achieve better gut health and overall wellness.
-    #v(1.25cm)
+    #v(1cm)
     === Precision Probiotic Formulation:\ Optimizing Health Solutions Through Microbiome Science
     #align(center, box(
       width: 12.88cm,
     )[Our precision probiotics leverage advanced scientific technology to provide highly effective, personalised support for your overall wellness.])
+    #v(0.5em)
 
     #let precision-probiotics-box(symbolic, title, body) = box(
       fill: primary.darken(15%),
       width: 100%,
-      align(center, pad(y: 15pt, x: 8pt)[
-        #set text(fill: white, hyphenate: true)
+      align(center, pad(top: 15pt, bottom: 20pt, x: 8pt)[
+        #set text(fill: white, hyphenate: false)
+        #set par(justify: false)
         #image(symbolic)
 
         #text(size: 16pt)[*#title*]
 
-        #align(left, body)
+        #align(center, body)
       ]),
     )
     #table(

@@ -172,5 +172,20 @@
   },
   "Colorectal Cancer": {
     "zh_hk": "大腸癌風險"
+  },
+  "Health Conditions Overview": {
+    "zh_hk": "健康情況總覽"
+  },
+  "Analysis Results of Microbiome": {
+    "zh_hk": "微生物組分析結果"
+  },
+  "Disease Risks Assessment": {
+    "zh_hk": "疾病風險評估"
+  },
+  "Personalised Nutrition Guidelines": {
+    "zh_hk": "個人化營養膳食指南"
+  },
+  "Appendix": {
+    "zh_hk": "附錄"
   }
 }

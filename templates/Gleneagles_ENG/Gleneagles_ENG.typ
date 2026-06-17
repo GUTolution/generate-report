@@ -21,19 +21,16 @@
 #let report = (
   json(input-json)
     + (
-      ("testing-item", "NGS Gut Microbiome Health Screening Test"),
-      (
-        "sections",
-        (
-          (("en", "Report Introduction"), ("zh_hk", "報告介紹")).to-dict(),
-          (("en", "Health Conditions Overview"), ("zh_hk", "健康情況總覽")).to-dict(),
-          (("en", "Analysis Results of Microbiome"), ("zh_hk", "微生物組分析結果")).to-dict(),
-          (("en", "Disease Risks Assessment"), ("zh_hk", "疾病風險評估")).to-dict(),
-          (("en", "Personalised Nutrition Guidelines"), ("zh_hk", "個人化營養膳食指南")).to-dict(),
-          (("en", "Appendix"), ("zh_hk", "附錄")).to-dict(),
-        ),
-      ),
-    ).to-dict()
+      testing-item: "NGS Gut Microbiome Health Screening Test",
+      sections: (
+        "Report Introduction",
+        "Health Conditions Overview",
+        "Analysis Results of Microbiome",
+        "Disease Risks Assessment",
+        "Personalised Nutrition Guidelines",
+        "Appendix"
+      )
+    )
 )
 #{
   report.report_information.date_of_report = to-date(report.report_information.date_of_report)

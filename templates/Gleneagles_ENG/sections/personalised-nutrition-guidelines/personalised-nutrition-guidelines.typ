@@ -1,7 +1,7 @@
 #import "../../lib.typ": *
 
 #let personalised-nutrition-guidelines(section, report) = page[
-  #section-heading[#section.zh_hk\ #section.en]
+  #section-heading[#i18n.at(section).zh_hk\ #section]
 
   #let food-categories = yaml("food-categories.yaml")
   #let recommendations = report.food_recommendations
@@ -12,12 +12,11 @@
     #set par(justify: false)
     #let tier-pill(tier: "Superfood") = box(
       radius: 50%,
-      fill: primary,
+      fill: primary.lighten(10%),
       inset: 0.5em,
       width: 5em,
       align(center + horizon, text(
         fill: white,
-        weight: "bold",
         size: 11pt,
       )[#tier]),
     )
@@ -25,10 +24,10 @@
       food-categories.at(category).filter(food => recommendations.at(food, default: "") == tier).len()
     )
     #let recommendations-aggregate(category, tier) = align(horizon, stack(dir: ltr, [Superfood: ], pad(x: 8pt, circle(
-      fill: primary,
+      fill: primary.lighten(20%),
       radius: 14pt,
       stroke: none,
-      text(fill: white, weight: "bold", [#number-of-recommendations(category, tier)]),
+      text(weight: "bold", [#number-of-recommendations(category, tier)]),
     ))))
     #align(center, stack(
       dir: ltr,
@@ -49,9 +48,9 @@
             image("images/" + lower(food) + ".png"),
             [],
             box(height: 45pt, align(bottom, stack(
-              text(size: if food.len() > 14 { 10pt } else { 14pt })[#food],
+              text(size: if food.len() > 14 { 10pt } else { 14pt })[#par(leading: 0.4em, food)],
               v(0.5em),
-              tier-pill(tier: recommendations.at(food, default: "Error!")),
+              tier-pill(tier: recommendations.at(food)),
             ))),
           )
         })

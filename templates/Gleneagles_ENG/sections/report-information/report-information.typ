@@ -36,7 +36,7 @@
       [Sample Quality\ (A/B/C/NA)], report.report_information.sample_quality_level,
       [Report Date], report.report_information.date_of_report.display(date-format),
       [Testing Date], report.report_information.date_collected.display(date-format),
-      [Testing Item], report.testing-item,
+      [Testing Item], report.product,
     )
   }
 ]

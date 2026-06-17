@@ -1,5 +1,7 @@
 #import "@preview/hydra:0.6.2": anchor, hydra
 
+#let i18n = json("i18n.json")
+
 #let display-logo = sys.inputs.at("args", default: (display_logo: true)).display_logo
 
 #let date-format = "[day]/[month]/[year]"
@@ -76,8 +78,8 @@
       place(top + start, pad(top: 8pt, left: 8pt, image("images/gleneagles-header-logo-full.png")))
     }
     #place(top + end, pad(top: 20pt, right: 15pt, header-text[
-      NGS 腸道微生態健康檢測\
-      NGS Gut Microbiome Health Screening Test
+      #i18n.at(report.product).zh_hk\
+      #report.product
     ]))
     #header-text[User Name |] #h(1em)#report.report_information.user_full_name #h(4em) #header-text[Report Date |] #h(
       1em,
@@ -113,20 +115,34 @@
 #let excellent-bad = -1
 #let bad-excellent-colors = ("CF887C", "987AAB", "7C91A6", "EBC1A8", "A6BAAF")
 #let deficient-abundant-colors = ("987AAB", "7C91A6", "A6BAAF", "EBC1A8", "CF887C")
-#let bad-excellent-caption = (
-  (("en", "Bad"), ("zh_hk", "很差")).to-dict(),
-  (("en", "Fair"), ("zh_hk", "較差")).to-dict(),
-  (("en", "Average"), ("zh_hk", "中等")).to-dict(),
-  (("en", "Good"), ("zh_hk", "良好")).to-dict(),
-  (("en", "Excellent"), ("zh_hk", "優秀")).to-dict(),
-)
-#let deficient-abundant-caption = (
-  (("en", "Highly Deficient"), ("zh_hk", "嚴重缺乏")).to-dict(),
-  (("en", "Slightly Deficient"), ("zh_hk", "輕微缺乏")).to-dict(),
-  (("en", "Balanced"), ("zh_hk", "平衡")).to-dict(),
-  (("en", "Slightly Overabundant"), ("zh_hk", "輕微過剩")).to-dict(),
-  (("en", "Highly Overabundant"), ("zh_hk", "嚴重過剩")).to-dict(),
-)
+#let bad-excellent-caption = {
+  let bad-excellent-caption-en = (
+    "Bad",
+    "Fair",
+    "Average",
+    "Good",
+    "Excellent",
+  )
+  bad-excellent-caption-en
+    .zip(bad-excellent-caption-en.map(caption => i18n.at(caption)))
+    .map(((en, translation)) => (en: en, zh_hk: translation.zh_hk))
+}
+
+#let deficient-abundant-caption = {
+  let deficient-abundant-caption-en = (
+    "Highly Deficient",
+    "Slightly Deficient",
+    "Balanced",
+    "Slightly Overabundant",
+    "Highly Overabundant",
+  )
+  deficient-abundant-caption-en
+    .zip(deficient-abundant-caption-en.map(
+      caption => i18n.at(caption),
+    ))
+    .map(((en, translation)) => (en: en, zh_hk: translation.zh_hk))
+}
+
 #let slider(
   value: 0,
   semantics: bad-excellent,
@@ -206,7 +222,7 @@
   align(center + horizon, text(
     fill: if risk == baseline { on-constructive } else { on-destructive },
     weight: "bold",
-  )[#(if risk == elevated { "較高風險" } else { "正常風險" })\ #(
+  )[#(if risk == elevated { i18n.at("Elevated Risk").zh_hk } else { i18n.at("Baseline Risk").zh_hk })\ #(
       if risk == elevated { "Elevated Risk" } else { "Baseline Risk" }
     )]),
 )
@@ -247,5 +263,3 @@
 
   body
 }
-
-#let i18n = json("i18n.json")

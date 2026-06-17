@@ -21,7 +21,7 @@
 #let report = (
   json(input-json)
     + (
-      testing-item: "NGS Gut Microbiome Health Screening Test",
+      product: "NGS Gut Microbiome Health Screening Test",
       sections: (
         "Report Introduction",
         "Health Conditions Overview",

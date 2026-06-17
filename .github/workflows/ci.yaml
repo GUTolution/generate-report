@@ -37,6 +37,14 @@ jobs:
         run: sudo apt install -y pkg-config libfreetype6-dev libfontconfig1-dev
         if: ${{ matrix.os == 'ubuntu-latest' }}
       - uses: actions/checkout@v6
+      - name: Cache Cargo crates
+        id: cache-cargo
+        uses: actions/cache@v5
+        env:
+          cache-name: cache-cargo-crates
+        with:
+          path: target
+          key: ${{ matrix.os }}-${{ matrix.target }}-build-${{ env.cache-name }}-${{ hashFiles('**/Cargo.lock') }}
       - uses: taiki-e/upload-rust-binary-action@v1
         with:
           # (required) Binary names (non-extension portion of filename) to build and upload (whitespace or comma separated list).

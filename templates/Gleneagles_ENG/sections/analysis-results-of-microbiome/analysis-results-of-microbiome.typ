@@ -1,7 +1,7 @@
 #import "../../lib.typ": *
 
 #let analysis-results-of-microbiome(section, report) = page(margin: (x: 0pt, top: 3.8cm))[
-  #section-heading[#i18n.at(section).zh_hk\ #section]
+  #section-heading[#i18n.at(section).zh_HK\ #section]
 
   #align(center, pad(top: 2em, bottom: 1em, slider(
     value: none,
@@ -31,8 +31,8 @@
           weight: "bold",
           size: 8pt,
         )[#(
-            deficient-abundant-caption.at(0).zh_hk
-          )\ #(deficient-abundant-caption.at(0).en.split().join("\n"))])),
+            deficient-abundant-caption.at(0).zh_HK
+          )\ #(deficient-abundant-caption.at(0).en_HK.split().join("\n"))])),
         pad(bottom: 1.5em, align(center, text(
           fill: primary.darken(30%),
           size: 12pt,
@@ -43,8 +43,8 @@
           weight: "bold",
           size: 8pt,
         )[#(
-            deficient-abundant-caption.at(4).zh_hk
-          )\ #(deficient-abundant-caption.at(4).en.split().join("\n"))]),
+            deficient-abundant-caption.at(4).zh_HK
+          )\ #(deficient-abundant-caption.at(4).en_HK.split().join("\n"))]),
       ))),
     ),
     ..for (i, bacterium) in data.enumerate() {
@@ -52,7 +52,7 @@
         pad(left: 2em, align(horizon)[#prefix #(i + 1)]),
         pad(y: 4pt, align(horizon)[
           #set par(leading: 0.3em)
-          #text(size: 11pt, i18n.at(bacterium.name).zh_hk)\ #text(size: 10pt, bacterium.name)]),
+          #text(size: 11pt, i18n.at(bacterium.name).zh_HK)\ #text(size: 10pt, bacterium.name)]),
         align(center + horizon, pad(left: 1em, right: 2em, top: 1pt, bottom: 8pt, slider(
           value: bacterium.level - 1,
           color-scheme: deficient-abundant-colors,

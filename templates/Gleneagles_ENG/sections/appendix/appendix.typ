@@ -2,7 +2,7 @@
 #import "@preview/oxifmt:1.0.0": strfmt
 
 #let appendix(section, report) = page[
-  #section-heading[#i18n.at(section).zh_hk\ #section]
+  #section-heading[#i18n.at(section).zh_HK\ #section]
 
   #let abundant-bacteria-list(start: 0, end: none) = [
     #show table.cell: set text(size: 14pt)

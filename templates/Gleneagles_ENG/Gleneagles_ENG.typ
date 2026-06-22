@@ -17,7 +17,7 @@
 )
 
 #let production = sys.inputs.at("production", default: false)
-#let input-json = if production { sys.inputs.at("input_json") } else { "reference/NEUAS2639_Gleneagles_Report.json" }
+#let input-json = if production { sys.inputs.at("input_json") } else { "reference/NEUAS4840_Gleneagles_Report.json" }
 #let report = (
   json(input-json)
     + (

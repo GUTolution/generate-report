@@ -4,7 +4,7 @@
   #let outline-row(i, section, page) = (
     table.cell(line(angle: 90deg, stroke: 8pt + primary.darken(20%), length: 50pt)),
     table.cell(text(size: 42pt, weight: "black", leftpad(2, "0", i))),
-    table.cell(text(fill: secondary.darken(20%), size: 16pt, weight: "bold")[#i18n.at(section).zh_hk\ #section]),
+    table.cell(text(fill: secondary.darken(20%), size: 16pt, weight: "bold")[#i18n.at(section).zh_HK\ #section]),
     table.cell(align(end, text(fill: secondary.darken(20%), size: 17pt, weight: "extrabold")[#page])),
   )
 

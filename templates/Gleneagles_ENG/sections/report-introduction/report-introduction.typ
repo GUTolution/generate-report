@@ -1,7 +1,7 @@
 #import "../../lib.typ": *
 
 #let report-introduction(section, report) = [
-  #section-heading[#i18n.at(section).zh_hk\ #section]
+  #section-heading[#i18n.at(section).zh_HK\ #section]
   #box(
     fill: primary.transparentize(90%),
     inset: 8pt,

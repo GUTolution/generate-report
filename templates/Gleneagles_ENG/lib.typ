@@ -1,10 +1,28 @@
 #import "@preview/hydra:0.6.2": anchor, hydra
 
+#let to-string(it) = {
+  if type(it) == str {
+    it
+  } else if type(it) != content {
+    str(it)
+  } else if it.has("text") {
+    it.text
+  } else if it.has("children") {
+    it.children.map(to-string).join()
+  } else if it.has("body") {
+    to-string(it.body)
+  } else if it == [ ] {
+    " "
+  }
+}
+
+
 #let i18n = json("i18n.json")
 
-#let display-logo = sys.inputs.at("args", default: (display_logo: true)).display_logo
-
-#let date-format = "[day]/[month]/[year]"
+#let (display_logo: display-logo, locale) = sys.inputs.at("args", default: (display_logo: true, locale: "zh_HK"))
+/// Translations of content are converted to string and do not preserve formatting
+#let localize(s) = if locale == "en_HK" { s } else { i18n.at(to-string(s)).at(locale) }
+#let date-format = localize("[day]/[month]/[year]")
 #let neutral = rgb("#B0BDC1")
 #let primary = rgb("#44b6bd")
 #let secondary = rgb("#3b88c3")
@@ -45,18 +63,6 @@
   s.split(" ").filter(substr => is-alpha(substr)).join(" ")
 }
 
-#let to-string(content) = {
-  if content.has("text") {
-    content.text
-  } else if content.has("children") {
-    content.children.map(to-string).join("")
-  } else if content.has("body") {
-    to-string(content.body)
-  } else if content == [ ] {
-    " "
-  }
-}
-
 #let to-date(s) = toml(bytes("date = " + s)).date
 
 #let warn(body) = page(align(center, box(
@@ -78,7 +84,7 @@
       place(top + start, pad(top: 8pt, left: 8pt, image("images/gleneagles-header-logo-full.png")))
     }
     #place(top + end, pad(top: 20pt, right: 15pt, header-text[
-      #i18n.at(report.product).zh_hk\
+      #i18n.at(report.product).zh_HK\
       #report.product
     ]))
     #header-text[User Name |] #h(1em)#report.report_information.user_full_name #h(4em) #header-text[Report Date |] #h(
@@ -125,7 +131,7 @@
   )
   bad-excellent-caption-en
     .zip(bad-excellent-caption-en.map(caption => i18n.at(caption)))
-    .map(((en, translation)) => (en: en, zh_hk: translation.zh_hk))
+    .map(((en_HK, translation)) => (en_HK: en_HK, zh_HK: translation.zh_HK))
 }
 
 #let deficient-abundant-caption = {
@@ -140,7 +146,7 @@
     .zip(deficient-abundant-caption-en.map(
       caption => i18n.at(caption),
     ))
-    .map(((en, translation)) => (en: en, zh_hk: translation.zh_hk))
+    .map(((en_HK, translation)) => (en_HK: en_HK, zh_HK: translation.zh_HK))
 }
 
 #let slider(
@@ -171,10 +177,10 @@
     if semantics == bad-excellent {
       if caption-show-zh-hk {
         [#set par(leading: 0.4em)
-          #caption-scheme.at(this-value).zh_hk\
-          #text(size: 10pt, caption-scheme.at(this-value).en)]
+          #caption-scheme.at(this-value).zh_HK\
+          #text(size: 10pt, caption-scheme.at(this-value).en_HK)]
       } else {
-        [#caption-scheme.at(this-value).en]
+        [#caption-scheme.at(this-value).en_HK]
       }
     } else {
       caption(len - 1 - this-value)
@@ -222,7 +228,7 @@
   align(center + horizon, text(
     fill: if risk == baseline { on-constructive } else { on-destructive },
     weight: "bold",
-  )[#(if risk == elevated { i18n.at("Elevated Risk").zh_hk } else { i18n.at("Baseline Risk").zh_hk })\ #(
+  )[#(if risk == elevated { i18n.at("Elevated Risk").zh_HK } else { i18n.at("Baseline Risk").zh_HK })\ #(
       if risk == elevated { "Elevated Risk" } else { "Baseline Risk" }
     )]),
 )

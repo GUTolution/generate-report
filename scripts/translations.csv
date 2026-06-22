@@ -1,6 +1,18 @@
-en,zh_hk
+en_HK,zh_HK
 NGS Gut Microbiome Health Screening Test,NGS 腸道微生態健康檢測
+NGS Gut Microbiome Health Screening Report,NGS 腸道微生態健康檢測報告
+[day]/[month]/[year],[day]/[month]/[year]
 Report Information,報告資料
+User Name, 用戶姓名
+Report ID,報告編號
+Report Date,報告日期
+Sample ID,樣品編號
+Sex,用戶性別
+Sample Quality,樣品質量等級
+Date of Birth,出生日期
+Sample Mass,樣品總質量
+Testing Date,檢測日期
+Testing Item,檢測項目
 Report Introduction,報告介紹
 Probiotics,益生菌
 Commensal Bacteria,共生菌
@@ -50,14 +62,31 @@ Collinsella aerofaciens,產氣柯林斯菌
 Megamonas funiformis,單形巨單胞菌
 Gut Health,腸道健康
 Metabolism,代謝水平
+Metabolic Disease,代謝疾病
+Mental Disease,精神疾病
 Mental Health,精神健康
 Cognition,認知功能
+Cognitive Disease,認知疾病
+Autoimmunity Disease,自體免疫疾病
 Autoimmunity,自體免疫
 Gastrointestinal Disease,胃腸道疾病
+IBS - Diarrhea,大腸激躁症-便祕型
+IBS - Constipation,大腸激躁症-腹瀉型
 Irritable Bowel Syndrome - Constipation,大腸激躁症 - 便祕型
 Irritable Bowel Syndrome - Diarrhea,大腸激躁症 - 腹瀉型
 Inflammatory Bowel Disease,炎症性腸病
-Colorectal Cancer,大腸癌風險
+IBD,炎症性腸病
+Colorectal Cancer,大腸癌
+Diabetes,糖尿病
+NAFLD,非酒精性脂肪肝
+Hormonal Imbalance,激素失調
+Sleep Disorder,睡眠障礙
+Anxiety,焦慮症
+Depression,抑鬱症
+Cognitive Impairment,認知障礙 
+Alzheimer's Disease,阿茲海默症
+Allergy,過敏性疾病
+Eczema,濕疹
 Report Introduction,報告介紹
 Health Conditions Overview,健康情況總覽
 Analysis Results of Microbiome,微生物組分析結果

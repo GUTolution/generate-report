@@ -1,7 +1,7 @@
 #import "../../lib.typ": *
 
 #let disease-risks-assessment(section, report) = page(margin: (bottom: 0cm))[
-  #section-heading[#i18n.at(section).zh_hk\ #section]
+  #section-heading[#i18n.at(section).zh_HK\ #section]
 
   #let disease-group-img = (
     "IBS - Diarrhea": "images/ibs-diarrhea.png",
@@ -61,7 +61,7 @@
       disease-groups: (
         (
           name: "Mental Disease",
-          risk: report.disease_domains.at("Metabolism"),
+          risk: report.disease_domains.at("Mental Health"),
           diseases: (
             "Sleep Disorder",
             "Anxiety",
@@ -122,8 +122,8 @@
   #let disease-domain-summary(
     disease-domain,
   ) = pad(1.5em)[
-    #let name = (en: disease-domain.name, zh_hk: i18n.at(disease-domain.name).zh_hk)
-    #text(fill: secondary.darken(30%), weight: "extrabold", size: 16pt)[#name.zh_hk #name.en]
+    #let name = (en_HK: disease-domain.name, zh_HK: i18n.at(disease-domain.name).zh_HK)
+    #text(fill: secondary.darken(30%), weight: "extrabold", size: 16pt)[#name.zh_HK #name.en_HK]
 
     #box(width: 100%, height: 13.5em, align(center + bottom, stack(
       dir: ltr,
@@ -145,8 +145,8 @@
       colspan: 2,
       fill: neutral.lighten(70%),
       pad(1em)[
-        #let name = (en: disease-domains.at(0).name, zh_hk: i18n.at(disease-domains.at(0).name).zh_hk)
-        #pad(text(fill: secondary.darken(30%), weight: "extrabold", size: 16pt)[#name.zh_hk #name.en])
+        #let name = (en_HK: disease-domains.at(0).name, zh_HK: i18n.at(disease-domains.at(0).name).zh_HK)
+        #pad(text(fill: secondary.darken(30%), weight: "extrabold", size: 16pt)[#name.zh_HK #name.en_HK])
 
         #align(left, stack(
           dir: ltr,
@@ -229,7 +229,7 @@
         dir: ltr,
         box(pad(left: 0.7em, top: 0.7em, par(leading: 0.7em, text(
           size: 11pt,
-        )[*#id - #(i18n.at(bacteria.name).zh_hk)\ #text(size: 10pt, bacteria.name)*]))),
+        )[*#id - #(i18n.at(bacteria.name).zh_HK)\ #text(size: 10pt, bacteria.name)*]))),
         align(top + right, pad(0.7pt, box(
           fill: rgb(deficient-abundant-colors.at(bacteria.level - 1)),
           width: 28%,
@@ -237,10 +237,10 @@
           pad(
             0.45em,
             align(center + horizon, par(leading: 0.3em, justify: false, text(
-              size: if deficient-abundant-caption.at(bacteria.level - 1).en.len() > 10 { 9pt } else { 12pt },
+              size: if deficient-abundant-caption.at(bacteria.level - 1).en_HK.len() > 10 { 9pt } else { 12pt },
               weight: "bold",
               fill: white,
-            )[#deficient-abundant-caption.at(bacteria.level - 1).en])),
+            )[#deficient-abundant-caption.at(bacteria.level - 1).en_HK])),
           ),
         ))),
       ),

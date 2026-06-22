@@ -1,7 +1,7 @@
 #import "../../lib.typ": *
 
 #let personalised-nutrition-guidelines(section, report) = page[
-  #section-heading[#i18n.at(section).zh_hk\ #section]
+  #section-heading[#i18n.at(section).zh_HK\ #section]
 
   #let food-categories = yaml("food-categories.yaml")
   #let recommendations = report.food_recommendations
@@ -43,7 +43,7 @@
         .at(category)
         .map(food => {
           grid(
-            columns: (auto, 10pt, 1fr),
+            columns: (auto, 6pt, 1fr),
             align: horizon,
             image("images/" + lower(food) + ".png"),
             [],

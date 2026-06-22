@@ -25,7 +25,7 @@ jobs:
         include:
           - target: x86_64-unknown-linux-gnu
             os: ubuntu-latest
-          - target: x86_64-apple-darwin
+          - target: aarch64-apple-darwin
             os: macos-latest
           - target: x86_64-pc-windows-msvc
             os: windows-latest
@@ -44,7 +44,11 @@ jobs:
           cache-name: cache-cargo-crates
         with:
           path: target
-          key: ${{ matrix.os }}-${{ matrix.target }}-build-${{ env.cache-name }}-${{ hashFiles('**/Cargo.lock') }}
+          key: ${{ env.cache-name }}-${{ matrix.target }}-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: |
+            ${{ env.cache-name }}-${{ matrix.target }}-${{ hashFiles('**/Cargo.lock') }}
+            ${{ env.cache-name }}-${{ matrix.target }}
+            ${{ env.cache-name }}-
       - uses: taiki-e/upload-rust-binary-action@v1
         with:
           # (required) Binary names (non-extension portion of filename) to build and upload (whitespace or comma separated list).

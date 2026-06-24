@@ -559,7 +559,7 @@
     title: [抑鬱症 Depression],
     description: [Depression is a mood disorder typically characterized by persistent low mood, loss of interest, and feelings of hopelessness. Its causes include genetic factors, neurochemical imbalances, life stress, or significant life changes. Common symptoms include prolonged sadness, feelings of helplessness, difficulty concentrating, changes in appetite or sleep patterns, and even suicidal thoughts. Depression can severely impact an individual's work, family, and social functioning. Treatment methods include psychotherapy, antidepressant medications, and lifestyle adjustments.
     ],
-    img: "images/Hormonal Imbalance.png",
+    img: "images/Depression Disease.png",
   )
 
   #pagebreak()

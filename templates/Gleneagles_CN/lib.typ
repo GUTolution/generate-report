@@ -97,7 +97,7 @@
       #i18n.at(report.product).zh_HK\
       #report.product
     ]))
-    #header-text[用戶姓名 |] #h(1em)#report.report_information.user_full_name #h(4em) #header-text[Report Date |] #h(
+    #header-text[用戶姓名 |] #h(1em)#report.report_information.user_full_name #h(4em) #header-text[報告日期 |] #h(
       1em,
     )#report.report_information.date_of_report.display(
       date-format,
@@ -254,8 +254,7 @@
     fill: primary.darken(20%),
     it.body,
   ))
-  set text(size: 12pt, font: ((name: "Mulish", covers: "latin-in-cjk"), "Noto Sans TC"), weight: "regular")
-  show smartquote: set text(features: ("pwid",)) 
+  set text(size: 12pt, font: ("Noto Sans TC", (name: "Mulish", covers: "latin-in-cjk")), weight: "regular")
 
   body
 }
@@ -274,7 +273,7 @@
 }
 
 #let body-style(body) = {
-  set par(justify: true, leading: 0.5em)
+  set par(leading: 0.5em)
   set page(margin: (x: 1.8cm))
   set text(size: 12pt, hyphenate: false)
 

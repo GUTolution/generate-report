@@ -233,14 +233,14 @@
         align(top + right, pad(0.7pt, box(
           fill: rgb(deficient-abundant-colors.at(bacteria.level - 1)),
           width: 28%,
-          height: 2.5em,
+          height: 2em,
           pad(
             0.45em,
             align(center + horizon, par(leading: 0.3em, justify: false, text(
-              size: if deficient-abundant-caption.at(bacteria.level - 1).en_HK.len() > 10 { 9pt } else { 12pt },
+              size: 12pt,
               weight: "bold",
               fill: white,
-            )[#deficient-abundant-caption.at(bacteria.level - 1).en_HK])),
+            )[#deficient-abundant-caption.at(bacteria.level - 1).zh_HK])),
           ),
         ))),
       ),
@@ -547,7 +547,7 @@
   #disease-info-card(
     title: [抑鬱症 Depression],
     description: [抑鬱症是一種情緒障礙，通常伴隨情緒低落、興趣喪失和無望感。其致病原因包括遺傳、神經化學失衡、生活壓力或重大生活變故。典型症狀包括持續的悲傷、無力感、注意力不集中、食慾或睡眠改變，甚至自殺念頭。抑鬱症可嚴重影響個人的工作、家庭和社交功能。治療方法包括心理治療、抗抑鬱藥物及生活方式調整。],
-    img: "images/Hormonal Imbalance.png",
+    img: "images/Depression Disease.png",
   )
 
   #pagebreak()

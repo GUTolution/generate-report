@@ -5,20 +5,20 @@
 
 #let style(body) = {
   show title: set text(size: 28pt, weight: "medium", tracking: 1.2pt)
-  show heading.where(level: 1): set text(size: 18pt, weight: "extrabold", fill: rgb(22,74,100))
+  show heading.where(level: 1): set text(size: 18pt, weight: "extrabold", fill: rgb(22, 74, 100))
   set text(size: 11pt, font: "Inter", weight: "regular", features: ("salt",))
   body
 }
 
-#let standard-page-background(section-header: none)= {
+#let standard-page-background(section-header: none) = {
   image("images/background-pattern.png")
   place(top, context {
     let header = image("images/header-background.png")
     box(height: measure(header).height, {
       header
-      place(horizon, pad(top:1em, left:2em)[= #section-header])
+      place(horizon, pad(top: 1em, left: 2em)[= #section-header])
     })
-  place(top + end, pad(top: 0.6em, right: 1em, image("images/gutolution_logo_header.png", width: 11em)))
+    place(top + end, pad(top: 0.6em, right: 1em, image("images/gutolution_logo_header.png", width: 11em)))
   })
 }
 

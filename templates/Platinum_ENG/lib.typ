@@ -9,17 +9,18 @@
   body
 }
 
-#let standard-page-background(section-header: none) = {
+#let standard-page-background(section-header: none)= {
   image("images/background-pattern.png")
   place(top, context {
     let header = image("images/header-background.png")
     box(height: measure(header).height, {
       header
-      place(horizon, [= #section-header])
+      place(horizon, pad(top:1em, left:2em, text(size: 16pt, weight: "extrabold", fill:rgb(22,74,100))[= #section-header]))
     })
   place(top + end, pad(top: 0.6em, right: 1em, image("images/gutolution_logo_header.png", width: 11em)))
   })
 }
+
 
 #let page-style = {
   let f(it) = {

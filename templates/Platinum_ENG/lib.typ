@@ -38,14 +38,13 @@
   })
 }
 
-
 #let page-style = {
   let f(it) = {
     set page(
       header: anchor(),
       margin: (top: 3cm, x: 1.2cm, bottom: 1.2cm),
       numbering: "1",
-      number-align: end
+      number-align: end,
     )
     it
   }

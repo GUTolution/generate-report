@@ -1,7 +1,7 @@
 #import "../lib.typ": *
 
 #let cover-page(report) = page(
-  background: image("../images/background-pattern.png"),
+  background: image("../images/background-pattern.svg"),
   margin: (x: 1cm, top: 1cm, bottom: 0cm),
   align(center)[
     #image("images/gutolution-logo-tagline.png")

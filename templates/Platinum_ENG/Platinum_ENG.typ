@@ -1,6 +1,7 @@
 #import "lib.typ": *
 #import "cover-page/cover-page.typ": cover-page
 #import "at-a-glance/at-a-glance.typ": at-a-glance
+#import "pathogen-opportunistic-bacteria/pathogen-opportunistic-bacteria.typ": pathogen-opportunistic-bacteria
 
 #set document(
   title: [GUTolution™ Microbiome Test Platinum],
@@ -21,7 +22,7 @@
 
 #show: page-style
 
-#let sections = (at-a-glance,)
+#let sections = (at-a-glance, pathogen-opportunistic-bacteria)
 
 #for (i, section) in sections.enumerate() {
   section(report)

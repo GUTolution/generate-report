@@ -55,7 +55,7 @@
 
 #let captialize(s) = {
   if s.len() > 0 {
-    return upper(s.slice(0,1)) + s.slice(1)
+    return upper(s.slice(0, 1)) + s.slice(1)
   }
   s
 }

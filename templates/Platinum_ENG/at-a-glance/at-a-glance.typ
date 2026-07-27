@@ -94,15 +94,16 @@
       width: 100%,
       height: 1cm,
     )[
-      #let slider-tab(items, min-gap: 6) = {
-        let sorted = items.sorted(key: it => it.at(1)).map( it => (label: it.at(0), value: it.at(1)))
+      #let slider-tab(items, min-gap: 11) = {
+        let sorted = items.sorted(key: it => it.at(1)).map(it => (label: it.at(0), value: it.at(1)))
 
         let label_pos = ()
         for (i, it) in sorted.enumerate() {
           label_pos.push(it.value)
-          if calc.abs(it.value - sorted.at(i - 1).value) < min-gap {
-            label_pos.at(i) += min-gap/2
-            label_pos.at(i - 1) -= min-gap/2
+          let gap = calc.abs(it.value - sorted.at(i - 1).value)
+          if gap < min-gap {
+            label_pos.at(i) += (min-gap - gap) / 2
+            label_pos.at(i - 1) -= (min-gap - gap) / 2
           }
         }
 

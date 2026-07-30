@@ -85,23 +85,24 @@
     },
   )
   #platinum-table(
-    columns: (23%, 15%, 42%, 20%),
-    left-align-cols: (0, 2),
+    columns: (23%, 15%, 15%, 32%, 15%),
+    left-align-cols: (0, 3),
     inset: (x: 0.7em, y: 0.6em),
+    small-font-cols: (3,),
     table.header(
       pad(0.3em, align(left)[Protozoa & Worms]), // Hack: maintain visual balance by adding extra padding to header
       [Result],
+      [Reference],
       align(left)[Role / Gut & Gost Function / Impact],
       [Re-test Interval\*],
     ),
     ..for (protozoa, impact) in report.non_bacterial_members.protozoa.zip(impacts.protozoa_worms) {
       (
         [_#protozoa.name _],
-        text(fill: detected-to-color(
-          protozoa.result.detected,
-        ))[*#if protozoa.result.detected [Detected] else [Not Detected]*],
-        text(size: 8pt)[#impact],
-        [#detected-to-retest-interval(protozoa.result.detected)],
+        text(fill: detected-to-color(protozoa.result.detected))[*#numfmt(protozoa.result.value)*],
+        rangefmt(protozoa.logic_operator),
+        text(size:7pt,[#impact]),
+        detected-to-retest-interval(protozoa.result.detected),
       )
     },
   )

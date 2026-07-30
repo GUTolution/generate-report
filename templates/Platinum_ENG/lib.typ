@@ -1,18 +1,28 @@
 #import "@preview/hydra:0.6.3": anchor, hydra
 #import "@preview/oxifmt:1.0.0": strfmt
 
-#let is-long-num(num) = num < 1e-5 or num >= 1e6 or {
-  let num = str(num)
-  if num.contains(".") {
-    num.split(".").at(1).len() > 6
-  } else {
-    num.len() > 6
+#let numfmt(num) = strfmt("{:.2E}", num)
+
+#let rangefmt(range) = {
+  if range.contains(">") or range.contains("<") {
+    let r = range.split("=")
+    if r.len() == 2 {
+      r.at(0) = strfmt("{}=", r.at(0))
+    }
+    if r.len() < 2 {
+      r = range.split(">")
+      r.at(0) = ">"
+    }
+    if r.len() < 2 {
+      r = range.split("<")
+      r.at(0) = "<"
+    }
+    strfmt("{}{}", r.at(0), numfmt(float(r.at(1))))
   }
-}
-#let numfmt(num) = {
-  if is-long-num(num) {
-    return strfmt("{:.2e}", num)
-  } else { num }
+  else if range.contains("-"){
+    let r = range.split(" - ")
+    strfmt("{} - {}", numfmt(float((r.at(0)))), numfmt(float((r.at(1)))))
+  }
 }
 
 #let date-format = "[day]/[month]/[year]"

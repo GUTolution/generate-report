@@ -71,7 +71,7 @@
         [#(i + 1)],
         [_#bacteria.species _],
         text(fill: rank-to-color(bacteria.result.rank))[*#numfmt(bacteria.result.value)*],
-        [#bacteria.logic_operator],
+        [#rangefmt(bacteria.logic_operator)],
       )
     },
   ))

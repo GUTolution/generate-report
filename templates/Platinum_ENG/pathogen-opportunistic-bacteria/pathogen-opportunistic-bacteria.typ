@@ -5,7 +5,7 @@
 #let table-row(bacteria, impact) = (
   [_#bacteria.name _],
   text(fill: rank-to-color(bacteria.result.rank))[*#numfmt(bacteria.result.value)*],
-  bacteria.logic_operator,
+  rangefmt(bacteria.logic_operator),
   impact,
   rank-to-retest-interval(bacteria.result.rank),
 )

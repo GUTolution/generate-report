@@ -31,8 +31,8 @@
         [#(i + 1)],
         [#marker.name],
         [#function],
-        text(fill: rank-to-color(marker.result.rank))[*#marker.result.value #marker.unit*],
-        [#marker.logic_operator],
+        text(fill: rank-to-color(marker.result.rank))[*#numfmt(marker.result.value) #marker.unit*],
+        [#rangefmt(marker.logic_operator)],
         [#rank-to-retest-interval(marker.result.rank)],
       )
     },

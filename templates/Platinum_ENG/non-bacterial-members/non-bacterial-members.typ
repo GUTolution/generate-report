@@ -32,7 +32,7 @@
       (
         [_#parasite.name _],
         text(fill: detected-to-color(parasite.result.detected))[*#numfmt(parasite.result.value)*],
-        parasite.logic_operator,
+        rangefmt(parasite.logic_operator),
         impact,
         detected-to-retest-interval(parasite.result.detected),
       )
@@ -55,7 +55,7 @@
       (
         [_#virus.name _],
         text(fill: rank-to-color(virus.result.rank))[*#numfmt(virus.result.value)*],
-        virus.logic_operator,
+        rangefmt(virus.logic_operator),
         impact,
         rank-to-retest-interval(virus.result.rank),
       )
@@ -78,7 +78,7 @@
       (
         [_#fungi.name _],
         text(fill: rank-to-color(fungi.result.rank))[*#numfmt(fungi.result.value)*],
-        fungi.logic_operator,
+        rangefmt(fungi.logic_operator),
         impact,
         rank-to-retest-interval(fungi.result.rank),
       )

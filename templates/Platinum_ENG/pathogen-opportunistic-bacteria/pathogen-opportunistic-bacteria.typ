@@ -11,7 +11,7 @@
 )
 
 #let table-rows(bacteria, impacts) = {
-  for (pathogen, impact) in bacteria.zip(impact.pathogens) {
+  for (pathogen, impact) in bacteria.zip(impacts) {
     table-row(pathogen, impact)
   }
 }
@@ -57,7 +57,7 @@
       [Role / Gut & Host Function / Impact],
       [Retest\ Interval\*],
     ),
-    ..table-rows(report.dysbiotic_overgrowth_bacteria, impact.dysbiotic_overgrowth_bacteria),
+    ..table-rows(report.dysbiotic_overgrowth_bacteria, impact.dysbiotic_overgrowth_bacteria), 
   )
   #pagebreak()
   #platinum-table(

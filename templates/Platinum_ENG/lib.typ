@@ -66,6 +66,9 @@
     })
     place(top + end, pad(top: 0.4em, right: 2em, image("images/gutolution-logo-header.svg", width: 10em)))
   })
+  place(bottom + end, dx: -1.2cm, dy: -0.55cm, context {
+    text(fill: primary, size: 15pt, counter(page).display())
+  })
 }
 
 #let page-style = {
@@ -74,11 +77,6 @@
       paper: "a4",
       header: anchor(),
       margin: (top: 3cm, x: 1.2cm, bottom: 1.2cm),
-      numbering: (..nums) => text(
-        size: 15pt,
-        fill: primary,
-        numbering("1", nums.pos().first())
-      ),
       number-align: end,
     )
     set text(features: ("cv05",))
@@ -131,7 +129,7 @@
 #let detected-to-retest-interval(detected) = if detected { [6-8 weeks] }
 #let rank-to-color(rank) = if rank == 2 { yellow } else if rank == 3 { red } else { green }
 #let detected-to-color(detected) = if detected { red } else { green }
-#let display-rating(rating) = if rating == 1 { [Above reference] } else if rating == 0 { [Normal] } else if (
+#let display-rating(rating) = if rating == 1 { [Above reference] } else if rating == 0 { [Within reference] } else if (
   rating == -1
 ) {
   [Below reference]

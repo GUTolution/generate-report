@@ -20,20 +20,16 @@
   background: standard-page-background(
     section-header: [Pathogen and Opportunistic Bacteria],
   ),
-  footer: context[
-    #text(
+  footer: text(
     size: 8pt,
-    )[\* Retesting timelines may vary depending on intervention type, clinical presentation, and individual response. Times for reference only]
-    #h(1fr)
-    #counter(page).display()
-  ],
+  )[\*Retesting timelines may vary depending on intervention type, clinical presentation, and individual response. Times for reference only],
 )[
   #platinum-table(
     left-align-cols: (0, 3),
     columns: (23%, 15%, 15%, 28%, 19%),
     tnum-cols: (1, 2),
     small-font-cols: (3,),
-    inset: (x: 0.7em),
+    inset: (x: 0.7em, y: 1em),
     table.header(
       align(left)[Bacterial Pathogens],
       [Result],
@@ -49,7 +45,7 @@
     columns: (23%, 15%, 15%, 28%, 19%),
     tnum-cols: (1, 2),
     small-font-cols: (3,),
-    inset: (x: 0.7em),
+    inset: (x: 0.7em, y: 1em),
     table.header(
       align(left)[Dysbiotic / Overgrowth Bacteria],
       [Result],
@@ -57,7 +53,7 @@
       [Role / Gut & Host Function / Impact],
       [Retest\ Interval\*],
     ),
-    ..table-rows(report.dysbiotic_overgrowth_bacteria, impact.dysbiotic_overgrowth_bacteria), 
+    ..table-rows(report.dysbiotic_overgrowth_bacteria, impact.dysbiotic_overgrowth_bacteria),
   )
   #pagebreak()
   #platinum-table(
@@ -65,7 +61,7 @@
     columns: (23%, 15%, 15%, 28%, 19%),
     tnum-cols: (1, 2),
     small-font-cols: (3,),
-    inset: (x: 0.7em),
+    inset: (x: 0.7em, y: 0.9em), // hack: y: 0.9em to prevent overflow
     table.header(
       align(left)[Commensal Overgrowth & Inflammatory-Related],
       [Result],

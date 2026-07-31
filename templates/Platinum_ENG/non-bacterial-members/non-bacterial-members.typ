@@ -6,13 +6,9 @@
   background: standard-page-background(
     section-header: [Non-Bacterial Members],
   ),
-  footer: context[
-    #text(
+  footer: text(
     size: 8pt,
-    )[\* Retesting timelines may vary depending on intervention type, clinical presentation, and individual response. Times for reference only]
-    #h(1fr)
-    #counter(page).display()
-  ],
+  )[\*Retesting timelines may vary depending on intervention type, clinical presentation, and individual response. Times for reference only],
 )[
   #set par(spacing: 0em)
 
@@ -21,6 +17,7 @@
     left-align-cols: (0, 3),
     columns: (23%, 15%, 15%, 32%, 15%),
     small-font-cols: (3,),
+    inset: (x: 0.7em, y: 0.75em),
     table.header(
       align(left)[Parasitic Pathogens],
       [Result],
@@ -42,7 +39,7 @@
     columns: (23%, 15%, 15%, 32%, 15%),
     left-align-cols: (0, 3),
     tnum-cols: (1, 2),
-    inset: (x: 0.7em, y: 0.6em),
+    inset: (x: 0.7em, y: 0.75em),
     small-font-cols: (3,),
     table.header(
       align(left)[Viral Pathogens],
@@ -65,7 +62,7 @@
     columns: (23%, 15%, 15%, 32%, 15%),
     left-align-cols: (0, 3),
     tnum-cols: (1, 2),
-    inset: (x: 0.7em, y: 0.6em),
+    inset: (x: 0.7em, y: 0.75em),
     small-font-cols: (3,),
     table.header(
       align(left)[Fungi/Yeast],
@@ -87,7 +84,7 @@
   #platinum-table(
     columns: (23%, 15%, 15%, 32%, 15%),
     left-align-cols: (0, 3),
-    inset: (x: 0.7em, y: 0.6em),
+    inset: (x: 0.7em, y: 0.75em),
     small-font-cols: (3,),
     table.header(
       pad(0.3em, align(left)[Protozoa & Worms]), // Hack: maintain visual balance by adding extra padding to header
@@ -101,7 +98,7 @@
         [_#protozoa.name _],
         text(fill: detected-to-color(protozoa.result.detected))[*#numfmt(protozoa.result.value)*],
         rangefmt(protozoa.logic_operator),
-        text(size:7pt,[#impact]),
+        text(size: 7pt, [#impact]),
         detected-to-retest-interval(protozoa.result.detected),
       )
     },

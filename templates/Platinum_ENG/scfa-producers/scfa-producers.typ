@@ -59,7 +59,7 @@
     tnum-cols: (0, 2, 3),
     left-align-cols: (1,),
     columns: (10%, 40%, 17%, 17%),
-    inset: (x: 0.7em, y: 0.7em),
+    inset: (x: 0.7em, y: 0.9em),
     table.header(
       [No.],
       align(left)[Bacterial Species],

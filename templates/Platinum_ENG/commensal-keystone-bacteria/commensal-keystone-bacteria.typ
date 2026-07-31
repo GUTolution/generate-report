@@ -2,22 +2,20 @@
 
 #let impact = json("impact.json")
 
-#let commensal-keystone-bacteria(report) = page(background: standard-page-background(
-  section-header: [Commensal and Keystone Bacteria],
-),
-footer: context[
-    #text(
+#let commensal-keystone-bacteria(report) = page(
+  background: standard-page-background(
+    section-header: [Commensal and Keystone Bacteria],
+  ),
+  footer: text(
     size: 8pt,
-    )[\* Retesting timelines may vary depending on intervention type, clinical presentation, and individual response. Times for reference only]
-    #h(1fr)
-    #counter(page).display()
-  ],
+  )[\*Retesting timelines may vary depending on intervention type, clinical presentation, and individual response. Times for reference only],
 )[
   #platinum-table(
     columns: (23%, 15%, 15%, 32%, 15%),
     tnum-cols: (1, 2),
     left-align-cols: (0, 3),
     small-font-cols: (3,),
+    inset: (x: 1em, y: 1.3em),
     table.header(
       align(left)[Bacterial Species],
       [Result],

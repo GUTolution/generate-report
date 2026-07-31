@@ -94,17 +94,51 @@
       width: 100%,
       height: 1cm,
     )[
-      #let slider-tab(items, min-gap: 11) = {
+      #let slider-tab(items, min-gap: 11.5) = {
         let sorted = items.sorted(key: it => it.at(1)).map(it => (label: it.at(0), value: it.at(1)))
 
-        let label_pos = ()
-        for (i, it) in sorted.enumerate() {
-          label_pos.push(it.value)
-          let gap = calc.abs(it.value - sorted.at(i - 1).value)
-          if gap < min-gap {
-            label_pos.at(i) += (min-gap - gap) / 2
-            label_pos.at(i - 1) -= (min-gap - gap) / 2
+        let distance(label1, label2) = calc.abs(label1 - label2)
+        let is-close(label1, label2) = distance(label1.value, label2.value) < min-gap
+        let (distance-0-1, is-close-0-1) = (
+          distance(sorted.at(0).value, sorted.at(1).value),
+          is-close(sorted.at(0), sorted.at(1)),
+        )
+        let (distance-1-2, is-close-1-2) = (
+          distance(sorted.at(1).value, sorted.at(2).value),
+          is-close(sorted.at(1), sorted.at(2)),
+        )
+        let label_pos = if is-close-0-1 and is-close-1-2 {
+          (
+            sorted.at(0).value - (min-gap - distance-0-1),
+            sorted.at(1).value,
+            sorted.at(2).value + (min-gap - distance-1-2),
+          )
+        } else if is-close-0-1 {
+          let evenly-offset = (
+            sorted.at(0).value - (min-gap - distance-0-1) / 2,
+            sorted.at(1).value + (min-gap - distance-0-1) / 2,
+            sorted.at(2).value,
+          )
+          let left-offset = (sorted.at(0).value - (min-gap - distance-0-1), sorted.at(1).value, sorted.at(2).value)
+          if distance(evenly-offset.at(1), evenly-offset.at(2)) < min-gap {
+            left-offset
+          } else {
+            evenly-offset
           }
+        } else if is-close-1-2 {
+          let evenly-offset = (
+            sorted.at(0).value,
+            sorted.at(1).value - (min-gap - distance-1-2) / 2,
+            sorted.at(2).value + (min-gap - distance-1-2) / 2,
+          )
+          let right-offset = (sorted.at(0).value, sorted.at(1).value, sorted.at(2).value + (min-gap - distance-1-2))
+          if distance(evenly-offset.at(0), evenly-offset.at(1)) < min-gap {
+            right-offset
+          } else {
+            evenly-offset
+          }
+        } else {
+          (sorted.at(0).value, sorted.at(1).value, sorted.at(2).value)
         }
 
         for i in range(sorted.len()) {

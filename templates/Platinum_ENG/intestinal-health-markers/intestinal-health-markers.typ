@@ -6,13 +6,9 @@
   background: standard-page-background(
     section-header: [Intestinal Health Markers],
   ),
-  footer: context[
-    #text(
+  footer: text(
     size: 8pt,
-    )[\* Retesting timelines may vary depending on intervention type, clinical presentation, and individual response. Times for reference only]
-    #h(1fr)
-    #counter(page).display()
-  ],
+    )[\*Retesting timelines may vary depending on intervention type, clinical presentation, and individual response. Times for reference only],
 )[
   #platinum-table(
     left-align-cols: (1, 2),
@@ -31,8 +27,8 @@
         [#(i + 1)],
         [#marker.name],
         [#function],
-        text(fill: rank-to-color(marker.result.rank))[*#marker.result.value #marker.unit*],
-        [#marker.logic_operator],
+        text(fill: rank-to-color(marker.result.rank))[*#numfmt(marker.result.value) #marker.unit*],
+        [#rangefmt(marker.logic_operator)],
         [#rank-to-retest-interval(marker.result.rank)],
       )
     },

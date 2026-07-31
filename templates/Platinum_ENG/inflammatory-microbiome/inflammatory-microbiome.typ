@@ -33,7 +33,7 @@
         [_#bacteria.species#if range(1, 7).contains(i) [\*]_],
         [#interpretation],
         text(fill: rank-to-color(bacteria.result.rank))[*#numfmt(bacteria.result.value)*],
-        [#bacteria.logic_operator],
+        [#rangefmt(bacteria.logic_operator)],
       )
     },
   )
@@ -54,7 +54,7 @@
         [_#bacteria.species _],
         [#interpretation],
         text(fill: rank-to-color(bacteria.result.rank))[*#numfmt(bacteria.result.value)*],
-        [#bacteria.logic_operator],
+        [#rangefmt(bacteria.logic_operator)],
       )
     },
   )

@@ -5,13 +5,13 @@
 #let table-row(bacteria, impact) = (
   [_#bacteria.name _],
   text(fill: rank-to-color(bacteria.result.rank))[*#numfmt(bacteria.result.value)*],
-  bacteria.logic_operator,
+  rangefmt(bacteria.logic_operator),
   impact,
   rank-to-retest-interval(bacteria.result.rank),
 )
 
 #let table-rows(bacteria, impacts) = {
-  for (pathogen, impact) in bacteria.zip(impact.pathogens) {
+  for (pathogen, impact) in bacteria.zip(impacts) {
     table-row(pathogen, impact)
   }
 }
@@ -20,20 +20,16 @@
   background: standard-page-background(
     section-header: [Pathogen and Opportunistic Bacteria],
   ),
-  footer: context[
-    #text(
+  footer: text(
     size: 8pt,
-    )[\* Retesting timelines may vary depending on intervention type, clinical presentation, and individual response. Times for reference only]
-    #h(1fr)
-    #counter(page).display()
-  ],
+  )[\*Retesting timelines may vary depending on intervention type, clinical presentation, and individual response. Times for reference only],
 )[
   #platinum-table(
     left-align-cols: (0, 3),
     columns: (23%, 15%, 15%, 28%, 19%),
     tnum-cols: (1, 2),
     small-font-cols: (3,),
-    inset: (x: 0.7em),
+    inset: (x: 0.7em, y: 1em),
     table.header(
       align(left)[Bacterial Pathogens],
       [Result],
@@ -49,7 +45,7 @@
     columns: (23%, 15%, 15%, 28%, 19%),
     tnum-cols: (1, 2),
     small-font-cols: (3,),
-    inset: (x: 0.7em),
+    inset: (x: 0.7em, y: 1em),
     table.header(
       align(left)[Dysbiotic / Overgrowth Bacteria],
       [Result],
@@ -65,7 +61,7 @@
     columns: (23%, 15%, 15%, 28%, 19%),
     tnum-cols: (1, 2),
     small-font-cols: (3,),
-    inset: (x: 0.7em),
+    inset: (x: 0.7em, y: 0.9em), // hack: y: 0.9em to prevent overflow
     table.header(
       align(left)[Commensal Overgrowth & Inflammatory-Related],
       [Result],

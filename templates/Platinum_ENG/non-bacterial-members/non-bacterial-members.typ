@@ -6,13 +6,9 @@
   background: standard-page-background(
     section-header: [Non-Bacterial Members],
   ),
-  footer: context[
-    #text(
+  footer: text(
     size: 8pt,
-    )[\* Retesting timelines may vary depending on intervention type, clinical presentation, and individual response. Times for reference only]
-    #h(1fr)
-    #counter(page).display()
-  ],
+  )[\*Retesting timelines may vary depending on intervention type, clinical presentation, and individual response. Times for reference only],
 )[
   #set par(spacing: 0em)
 
@@ -21,6 +17,7 @@
     left-align-cols: (0, 3),
     columns: (23%, 15%, 15%, 32%, 15%),
     small-font-cols: (3,),
+    inset: (x: 0.7em, y: 0.75em),
     table.header(
       align(left)[Parasitic Pathogens],
       [Result],
@@ -32,7 +29,7 @@
       (
         [_#parasite.name _],
         text(fill: detected-to-color(parasite.result.detected))[*#numfmt(parasite.result.value)*],
-        parasite.logic_operator,
+        rangefmt(parasite.logic_operator),
         impact,
         detected-to-retest-interval(parasite.result.detected),
       )
@@ -42,7 +39,7 @@
     columns: (23%, 15%, 15%, 32%, 15%),
     left-align-cols: (0, 3),
     tnum-cols: (1, 2),
-    inset: (x: 0.7em, y: 0.6em),
+    inset: (x: 0.7em, y: 0.75em),
     small-font-cols: (3,),
     table.header(
       align(left)[Viral Pathogens],
@@ -55,7 +52,7 @@
       (
         [_#virus.name _],
         text(fill: rank-to-color(virus.result.rank))[*#numfmt(virus.result.value)*],
-        virus.logic_operator,
+        rangefmt(virus.logic_operator),
         impact,
         rank-to-retest-interval(virus.result.rank),
       )
@@ -65,7 +62,7 @@
     columns: (23%, 15%, 15%, 32%, 15%),
     left-align-cols: (0, 3),
     tnum-cols: (1, 2),
-    inset: (x: 0.7em, y: 0.6em),
+    inset: (x: 0.7em, y: 0.75em),
     small-font-cols: (3,),
     table.header(
       align(left)[Fungi/Yeast],
@@ -78,30 +75,31 @@
       (
         [_#fungi.name _],
         text(fill: rank-to-color(fungi.result.rank))[*#numfmt(fungi.result.value)*],
-        fungi.logic_operator,
+        rangefmt(fungi.logic_operator),
         impact,
         rank-to-retest-interval(fungi.result.rank),
       )
     },
   )
   #platinum-table(
-    columns: (23%, 15%, 42%, 20%),
-    left-align-cols: (0, 2),
-    inset: (x: 0.7em, y: 0.6em),
+    columns: (23%, 15%, 15%, 32%, 15%),
+    left-align-cols: (0, 3),
+    inset: (x: 0.7em, y: 0.75em),
+    small-font-cols: (3,),
     table.header(
       pad(0.3em, align(left)[Protozoa & Worms]), // Hack: maintain visual balance by adding extra padding to header
       [Result],
+      [Reference],
       align(left)[Role / Gut & Gost Function / Impact],
       [Re-test Interval\*],
     ),
     ..for (protozoa, impact) in report.non_bacterial_members.protozoa.zip(impacts.protozoa_worms) {
       (
         [_#protozoa.name _],
-        text(fill: detected-to-color(
-          protozoa.result.detected,
-        ))[*#if protozoa.result.detected [Detected] else [Not Detected]*],
-        text(size: 8pt)[#impact],
-        [#detected-to-retest-interval(protozoa.result.detected)],
+        text(fill: detected-to-color(protozoa.result.detected))[*#numfmt(protozoa.result.value)*],
+        rangefmt(protozoa.logic_operator),
+        text(size: 7pt, [#impact]),
+        detected-to-retest-interval(protozoa.result.detected),
       )
     },
   )

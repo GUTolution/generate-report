@@ -26,7 +26,7 @@
 #let abundance-table-row(name, data) = (
   emph(name),
   [#data.abundance],
-  data.logic_operator,
+  rangefmt(data.logic_operator),
   display-rating(data.rating),
 )
 

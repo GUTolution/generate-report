@@ -48,9 +48,7 @@ struct GleneaglesTemplateArgs {
 }
 
 #[derive(Debug, Clone, IntoValue, IntoDict)]
-struct PlatinumTemplateArgs {
-
-}
+struct PlatinumTemplateArgs {}
 
 #[derive(Debug, Clone, Hash, PartialEq)]
 struct TypstPdfGenerationError(EcoVec<SourceDiagnostic>);
@@ -73,7 +71,16 @@ fn templates() -> &'static [&'static str] {
     ]
 }
 
-fn build_engine(name: impl AsRef<str>) -> anyhow::Result<TypstEngine<TypstTemplateMainFile>> {
+type Engine = Arc<TypstEngine<TypstTemplateMainFile>>;
+thread_local! {
+    static ENGINES: [Engine; 3] = [
+        build_engine("Gleneagles_ENG").expect("Failed to build Gleneagles_ENG engine"),
+        build_engine("Gleneagles_CN").expect("Failed to build Gleneagles_CN engine"),
+        build_engine("Platinum_ENG").expect("Failed to build Platinum_ENG engine")
+    ];
+}
+
+fn build_engine(name: impl AsRef<str>) -> anyhow::Result<Engine> {
     let name = name.as_ref();
     let template_dir = TEMPLATES.get_dir(name).unwrap();
     let fonts = template_dir
@@ -87,48 +94,50 @@ fn build_engine(name: impl AsRef<str>) -> anyhow::Result<TypstEngine<TypstTempla
         .chain(template_dir.find(&format!("{name}/**/*.svg"))?)
         .chain(template_dir.find(&format!("{name}/**/*.yml"))?)
         .chain(template_dir.find(&format!("{name}/**/*.yaml"))?);
-    Ok(TypstEngine::builder()
-        .main_file(
-            template_dir
-                .get_file(format!("{name}/{name}.typ"))
-                .unwrap()
-                .contents_utf8()
-                .unwrap(),
-        )
-        .with_static_source_file_resolver(source_files.map(|src| {
-            (
-                {
-                    let mut p = src.path().components();
-                    p.next();
-                    p
-                }
-                .as_path()
-                .to_str()
-                .unwrap(),
-                src.as_file().unwrap().contents_utf8().unwrap(),
+    Ok(Arc::new(
+        TypstEngine::builder()
+            .main_file(
+                template_dir
+                    .get_file(format!("{name}/{name}.typ"))
+                    .unwrap()
+                    .contents_utf8()
+                    .unwrap(),
             )
-        }))
-        .with_static_file_resolver(other_files.map(|src| {
-            (
-                {
-                    let mut p = src.path().components();
-                    p.next();
-                    p
-                }
-                .as_path()
-                .to_str()
-                .unwrap(),
-                src.as_file().unwrap().contents(),
-            )
-        }))
-        .with_package_file_resolver()
-        .fonts(fonts.map(|font| font.as_file().unwrap().contents()))
-        .build())
+            .with_static_source_file_resolver(source_files.map(|src| {
+                (
+                    {
+                        let mut p = src.path().components();
+                        p.next();
+                        p
+                    }
+                    .as_path()
+                    .to_str()
+                    .unwrap(),
+                    src.as_file().unwrap().contents_utf8().unwrap(),
+                )
+            }))
+            .with_static_file_resolver(other_files.map(|src| {
+                (
+                    {
+                        let mut p = src.path().components();
+                        p.next();
+                        p
+                    }
+                    .as_path()
+                    .to_str()
+                    .unwrap(),
+                    src.as_file().unwrap().contents(),
+                )
+            }))
+            .with_package_file_resolver()
+            .fonts(fonts.map(|font| font.as_file().unwrap().contents()))
+            .build(),
+    ))
 }
 
 fn compile(
     input: &String,
-    selected_template: impl AsRef<str>,
+    selected_template: Engine,
     args: Dict,
     template_display_name: impl AsRef<str>,
 ) -> anyhow::Result<()> {
@@ -144,8 +153,8 @@ fn compile(
         args,
         production: true,
     };
-    println!("Compiling template: {template_display_name} ({selected_template})");
-    match build_engine(&selected_template)?
+    // println!("Compiling template: {template_display_name} ({selected_template})");
+    match selected_template
         .compile_with_input(template_input.into_dict())
         .output
     {
@@ -249,73 +258,79 @@ fn main() -> anyhow::Result<()> {
                 .collect::<Vec<_>>();
             let template_display_name = templates()[template_index as usize];
             println!("Inputs: {inputs:?}, selected template: {template_display_name}");
-            thread::spawn({
-                let generate_res = generate_res.clone();
-                move || {
-                    let res = inputs
-                        .par_iter()
-                        .map(|input| match template_display_name {
-                            "Gleneagles_ENG" => compile(
-                                input,
-                                "Gleneagles_ENG",
-                                GleneaglesTemplateArgs {
-                                    show_gleneagles_logo: true,
+            ENGINES.with(|engines| {
+                let [
+                    gleneagles_eng_engine,
+                    gleneagles_cn_engine,
+                    platinum_eng_engine,
+                ] = engines.clone();
+                thread::spawn({
+                    let generate_res = generate_res.clone();
+                    move || {
+                        let res = inputs
+                            .par_iter()
+                            .map({
+                                |input| match template_display_name {
+                                    "Gleneagles_ENG" => compile(
+                                        input,
+                                        gleneagles_eng_engine.clone(),
+                                        GleneaglesTemplateArgs {
+                                            show_gleneagles_logo: true,
+                                        }
+                                        .into_dict(),
+                                        template_display_name,
+                                    ),
+                                    "Gleneagles_ENG (white label)" => compile(
+                                        input,
+                                        gleneagles_eng_engine.clone(),
+                                        GleneaglesTemplateArgs {
+                                            show_gleneagles_logo: false,
+                                        }
+                                        .into_dict(),
+                                        template_display_name,
+                                    ),
+                                    "Gleneagles_CN" => compile(
+                                        input,
+                                        gleneagles_cn_engine.clone(),
+                                        GleneaglesTemplateArgs {
+                                            show_gleneagles_logo: true,
+                                        }
+                                        .into_dict(),
+                                        template_display_name,
+                                    ),
+                                    "Gleneagles_CN (white label)" => compile(
+                                        input,
+                                        gleneagles_cn_engine.clone(),
+                                        GleneaglesTemplateArgs {
+                                            show_gleneagles_logo: false,
+                                        }
+                                        .into_dict(),
+                                        template_display_name,
+                                    ),
+                                    "Platinum_ENG" => compile(
+                                        input,
+                                        platinum_eng_engine.clone(),
+                                        PlatinumTemplateArgs {}.into_dict(),
+                                        template_display_name,
+                                    ),
+                                    _ => anyhow::Result::Err(anyhow::Error::new(StringError(
+                                        "Template not implemented".to_string(),
+                                    ))),
                                 }
-                                .into_dict(),
-                                template_display_name,
-                            ),
-                            "Gleneagles_ENG (white label)" => compile(
-                                input,
-                                "Gleneagles_ENG",
-                                GleneaglesTemplateArgs {
-                                    show_gleneagles_logo: false,
-                                }
-                                .into_dict(),
-                                template_display_name,
-                            ),
-                            "Gleneagles_CN" => compile(
-                                input,
-                                "Gleneagles_CN",
-                                GleneaglesTemplateArgs {
-                                    show_gleneagles_logo: true,
-                                }
-                                .into_dict(),
-                                template_display_name,
-                            ),
-                            "Gleneagles_CN (white label)" => compile(
-                                input,
-                                "Gleneagles_CN",
-                                GleneaglesTemplateArgs {
-                                    show_gleneagles_logo: false,
-                                }
-                                .into_dict(),
-                                template_display_name,
-                            ),
-                            "Platinum_ENG" => compile(
-                                input,
-                                "Platinum_ENG",
-                                PlatinumTemplateArgs {
-                                    
-                                }
-                                .into_dict(),
-                                template_display_name
-                            ),
-                            _ => anyhow::Result::Err(anyhow::Error::new(StringError(
-                                "Template not implemented".to_string(),
-                            ))),
-                        })
-                        .find_any(|res| res.is_err());
-                    *generate_res.lock().unwrap() = Some(if let Some(Err(err)) = res {
-                        Err(err.to_string())
-                    } else {
-                        Ok(())
-                    });
-                }
+                            })
+                            .find_any(|res| res.is_err());
+                        *generate_res.lock().unwrap() = Some(if let Some(Err(err)) = res {
+                            Err(err.to_string())
+                        } else {
+                            Ok(())
+                        });
+                    }
+                });
             });
             let generate_res = generate_res.clone();
             let app = app.clone_strong();
             _ = spawn_local(async_compat::Compat::new(async move {
-                for _ in 0..400 {
+                loop {
                     if let Some(res) = generate_res.lock().unwrap().as_ref() {
                         match res {
                             Ok(_) => {

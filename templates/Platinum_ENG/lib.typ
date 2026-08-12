@@ -4,24 +4,12 @@
 #let numfmt(num) = strfmt("{:.2E}", num)
 
 #let rangefmt(range) = {
-  if range.contains(">") or range.contains("<") {
-    let r = range.split("=")
-    if r.len() == 2 {
-      r.at(0) = strfmt("{}=", r.at(0))
-    }
-    if r.len() < 2 {
-      r = range.split(">")
-      r.at(0) = ">"
-    }
-    if r.len() < 2 {
-      r = range.split("<")
-      r.at(0) = "<"
-    }
-    strfmt("{}{}", r.at(0), numfmt(float(r.at(1))))
-  }
-  else if range.contains("-"){
-    let r = range.split(" - ")
-    strfmt("{} - {}", numfmt(float((r.at(0)))), numfmt(float((r.at(1)))))
+  if range.lower == none {
+    [<#numfmt(range.upper)]
+  } else if range.upper == none {
+    [>#numfmt(range.lower)]
+  } else {
+    [#numfmt(range.lower) - #numfmt(range.upper)]
   }
 }
 
@@ -32,7 +20,7 @@
 #let primary = rgb("0097b2")
 #let green = rgb("56bc6c")
 #let red = rgb("de4d46")
-#let yellow = yellow.darken(5%)
+#let yellow = yellow.darken(15%)
 #let grey = rgb("595959")
 #let pie-palette = (
   rgb("#bfd8ec"),

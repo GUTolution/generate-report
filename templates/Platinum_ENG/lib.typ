@@ -16,11 +16,11 @@
 #let date-format = "[day]/[month]/[year]"
 #let to-date(s) = toml(bytes("date = " + s)).date
 
-#let primary-container = rgb("b4dee8")
+#let primary-container = rgb("#cbe3e9")
 #let primary = rgb("0097b2")
 #let green = rgb("56bc6c")
 #let red = rgb("de4d46")
-#let yellow = yellow.darken(15%)
+#let yellow = rgb("f1843d")
 #let grey = rgb("595959")
 #let pie-palette = (
   rgb("#bfd8ec"),
@@ -31,6 +31,13 @@
   rgb("#5d82e2"),
   rgb("#638cca"),
   rgb("#077098"),
+)
+
+#let pill(body) = box(
+  radius: 50%,
+  fill: primary-container,
+  inset: (y: 1em, x: 0.5em),
+  body,
 )
 
 #let style(body) = {
@@ -117,8 +124,9 @@
 #let detected-to-retest-interval(detected) = if detected { [6-8 weeks] }
 #let rank-to-color(rank) = if rank == 2 { yellow } else if rank == 3 { red } else { green }
 #let detected-to-color(detected) = if detected { red } else { green }
-#let display-rating(rating) = if rating == 1 { [Above reference] } else if rating == 0 { [Within reference] } else if (
+#let display-phyla-rating(rating) = if rating == 1 [Above reference] else if rating == 0 [Within reference] else if (
   rating == -1
-) {
-  [Below reference]
-}
+) [Below reference]
+#let display-endotoxin-rating(rating) = if rating == -1 [Normal] else if (
+  rating == 0
+) [Borderline elevated] else [Elevated]

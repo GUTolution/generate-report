@@ -23,13 +23,18 @@
   return legend
 }
 
-#let abundance-table-row(name, data) = (
+#let phyla-table-row(name, data, ) = (
   emph(name),
   [#data.abundance],
   rangefmt(data.logic_operator),
-  display-rating(data.rating),
+  display-phyla-rating(data.rating),
 )
-
+#let endotoxin-table-row(name, data) = (
+  emph(name),
+  [#data.abundance],
+  rangefmt(data.logic_operator),
+  display-endotoxin-rating(data.rating)
+)
 
 #let microbial-ecosystem-overview(report) = page(
   background: standard-page-background(
@@ -112,7 +117,7 @@
         ([Firmicutes], report.microbial_ecosystem.firmicutes),
         ([Firmicutes:Bacteroidetes Ratio\*], report.microbial_ecosystem.firm_bact_ratio),
       )
-        .map(((name, data)) => abundance-table-row(name, data))
+        .map(((name, data)) => phyla-table-row(name, data))
         .flatten(),
     )
     #platinum-table(
@@ -124,7 +129,7 @@
         [Reference Range (%)],
         [Rating],
       ),
-      ..abundance-table-row([Proteobacteria], report.microbial_ecosystem.proteobacteria),
+      ..endotoxin-table-row([Proteobacteria], report.microbial_ecosystem.proteobacteria),
     )
   ]
 

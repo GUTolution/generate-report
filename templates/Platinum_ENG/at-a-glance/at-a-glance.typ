@@ -42,7 +42,7 @@
     "proteobacteria",
     "firmicutes",
   )
-  #let colors = (green, yellow, red).map(color => color.transparentize(50%))
+  #let colors = (green, yellow.darken(5%), red).map(color => color.transparentize(50%))
   #box(
     width: 100%,
     height: 40%,

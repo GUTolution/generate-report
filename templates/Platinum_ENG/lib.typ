@@ -20,7 +20,7 @@
 #let primary = rgb("0097b2")
 #let green = rgb("56bc6c")
 #let red = rgb("de4d46")
-#let yellow = rgb("f1843d")
+#let orange = rgb("f1843d")
 #let grey = rgb("595959")
 #let pie-palette = (
   rgb("#bfd8ec"),
@@ -122,7 +122,7 @@
 
 #let rank-to-retest-interval(rank) = if rank == 2 { [8-12 weeks] } else if rank == 3 { [6-8 weeks] }
 #let detected-to-retest-interval(detected) = if detected { [6-8 weeks] }
-#let rank-to-color(rank) = if rank == 2 { yellow } else if rank == 3 { red } else { green }
+#let rank-to-color(rank) = if rank == 2 { orange } else if rank == 3 { red } else { green }
 #let detected-to-color(detected) = if detected { red } else { green }
 #let display-phyla-rating(rating) = if rating == 1 [Above reference] else if rating == 0 [Within reference] else if (
   rating == -1

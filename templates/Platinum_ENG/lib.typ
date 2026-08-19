@@ -1,7 +1,17 @@
 #import "@preview/hydra:0.6.3": anchor, hydra
 #import "@preview/oxifmt:1.0.0": strfmt
 
-#let numfmt(num) = strfmt("{:.2E}", num)
+#let numfmt(num) = {
+  let s = strfmt("{:.2E}", num)
+  if s.contains("E-") {
+    let (s1, exponent) = s.split("E-")
+    s = s1 + "E-" + strfmt("{:0>2}", int(s.split("E-").at(1)))
+  } else if s.contains("E") {
+    let (s1, exponent) = s.split("E")
+    s = s1 + "E+" + strfmt("{:0>2}", int(s.split("E").at(1)))
+  }
+  s
+}
 
 #let rangefmt(range) = {
   if range.lower == none {
@@ -9,7 +19,7 @@
   } else if range.upper == none {
     [>#numfmt(range.lower)]
   } else {
-    [#numfmt(range.lower) - #numfmt(range.upper)]
+    box(align(left)[#numfmt(range.lower) -- #numfmt(range.upper)])
   }
 }
 

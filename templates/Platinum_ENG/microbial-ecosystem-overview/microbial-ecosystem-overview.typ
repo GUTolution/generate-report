@@ -23,7 +23,7 @@
   return legend
 }
 
-#let phyla-table-row(name, data, ) = (
+#let phyla-table-row(name, data) = (
   emph(name),
   [#data.abundance],
   rangefmt(data.logic_operator),
@@ -33,7 +33,7 @@
   emph(name),
   [#data.abundance],
   rangefmt(data.logic_operator),
-  display-endotoxin-rating(data.rating)
+  display-endotoxin-rating(data.rating),
 )
 
 #let microbial-ecosystem-overview(report) = page(
@@ -91,7 +91,7 @@
                   (
                     text(
                       size: 8pt,
-                    )[#box(width: 1em, height: 1em, fill: pie-palette.at(calc.rem(index, 8))) #phylum.name #phylum.abundance%],
+                    )[#box(width: 1em, height: 1em, fill: pie-palette.at(calc.rem(index, 8))) #phylum.name #strfmt("{:.2}", phylum.abundance)%],
                   )
                 },
               ),
@@ -106,6 +106,7 @@
     #platinum-table(
       columns: (30%, 20%, 20%, 20%),
       left-align-cols: (0,),
+      tnum-cols: (1, 2),
       table.header(
         align(left)[Bacterial Phyla],
         [Relative Abundance (%)],
@@ -123,6 +124,7 @@
     #platinum-table(
       columns: (30%, 20%, 20%, 20%),
       left-align-cols: (0,),
+      tnum-cols: (1, 2),
       table.header(
         align(left)[Endotoxin (LPS) Burden Indicator],
         [Relative Abundance (%)],

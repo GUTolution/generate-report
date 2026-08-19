@@ -6,7 +6,7 @@
   #align(center, platinum-table(
     columns: (10%, 43%, 35%),
     left-align-cols: (1,),
-    tnum-cols: (2,),
+    tnum-cols: (0, 2,),
     table.header(
       [No.],
       align(left)[Bacterial Species],

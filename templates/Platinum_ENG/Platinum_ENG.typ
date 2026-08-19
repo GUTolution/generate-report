@@ -19,7 +19,7 @@
 
 #let production = sys.inputs.at("production", default: false)
 #let report = if production { json(sys.inputs.at("input_json")) } else {
-  json("reference/MEQAV8204_INTERNAL_DRAFT_platinum_report.json")
+  json("reference/MEQAV7203_platinum_report.json")
 }
 #{
   report.sample_collected_date = to-date(report.sample_collected_date)

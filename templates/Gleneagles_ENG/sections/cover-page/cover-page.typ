@@ -8,9 +8,9 @@
   #v(6em)
   #title()
   #v(4em)
-  #block(width: 55%)[
+  #block(width: 100%)[
     #subtitle[
-      #columns(2, gutter: 0pt)[
+      #columns(2, gutter: -15em)[
         #set par(spacing: 1.5em)
         User Name:
 

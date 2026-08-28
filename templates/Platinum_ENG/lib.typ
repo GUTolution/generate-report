@@ -46,7 +46,7 @@
 #let pill(body) = box(
   radius: 50%,
   fill: primary-container,
-  inset: (y: 0.5em, x: 0.5em),
+  inset: (y: 0.4em, x: 0.5em),
   body,
 )
 

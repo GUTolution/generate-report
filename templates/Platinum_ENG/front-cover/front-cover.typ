@@ -16,10 +16,9 @@
       show table.cell.where(x: 0): set text(weight: "bold")
       show table.cell: set text(size: 19pt, fill: rgb("164A64"))
       box(width: 13cm, table(
-        columns: (50%, 50%),
-        rows: 3.2em,
+        columns: (auto, 1fr),
         align: left + horizon,
-        // inset: (y: 0.5em),
+        inset: (y: 0.35em),
         stroke: gray.lighten(40%),
         fill: white,
         [Client Name:], [#report.client.name],

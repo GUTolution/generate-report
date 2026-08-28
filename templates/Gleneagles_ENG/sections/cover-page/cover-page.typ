@@ -8,17 +8,14 @@
   #v(6em)
   #title()
   #v(4em)
-  #block(width: 100%)[
     #subtitle[
       #table(
-        columns:(25%, 50%),
-        align: left + top,
+        columns:(auto, 1fr),
         inset: (y: 0.5em),
-        stroke: white,
+        stroke: none,
         [User Name: ], [#report.report_information.user_full_name],
         [Report ID:], [#report.report_information.report_id],
         [Report Date:], [#report.report_information.date_of_report.display(date-format)]
       )
     ]
-  ]
 ]

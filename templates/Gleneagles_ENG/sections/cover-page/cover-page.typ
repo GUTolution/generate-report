@@ -10,19 +10,26 @@
   #v(4em)
   #block(width: 100%)[
     #subtitle[
+      // #table(
+      //   columns:(20%, 50%),
+      //   rows: 
+      //   align: left + horizon,
+      //   [User Name: ], [#report.report_information.user_full_name],
+      //   [Report ID:]
+      // )
       #columns(2, gutter: -15em)[
         #set par(spacing: 1.5em)
         User Name:
         #colbreak()
         #report.report_information.user_full_name
       ]
-      #columns(2, gutter: 0pt)[
+      #columns(2, gutter: -15em)[
         #set par(spacing: 1.5em)
         Report ID:
         #colbreak()
         #report.report_information.report_id
       ]
-      #columns(2, gutter: 0pt)[
+      #columns(2, gutter: -15em)[
         #set par(spacing: 1.5em)
         Report Date:
         #colbreak()

@@ -1,4 +1,4 @@
-#import "../lib.typ": *
+#import "../../lib.typ": *
 #import "@preview/shadowed:0.3.0": shadow
 
 #let comment-card(label, comments) = shadow(

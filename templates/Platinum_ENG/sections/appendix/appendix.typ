@@ -1,4 +1,4 @@
-#import "../lib.typ": *
+#import "../../lib.typ": *
 
 #let appendix(report) = page(background: standard-page-background(section-header: [Appendix]), margin: (right: 2cm))[
   #set enum(numbering: (it => strong([#it.])))

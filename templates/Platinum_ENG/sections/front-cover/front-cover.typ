@@ -1,8 +1,8 @@
-#import "../lib.typ": *
+#import "../../lib.typ": *
 
 #let front-cover(report) = page(
   paper: "a4",
-  background: image("../images/background-pattern.svg"),
+  background: image("../../images/background-pattern.svg"),
   margin: (x: 0cm, top: 1cm, bottom: 0cm),
   align(center)[
     #image("images/gutolution-logo-tagline.svg")

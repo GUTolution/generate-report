@@ -1,4 +1,4 @@
-#import "../lib.typ": *
+#import "../../lib.typ": *
 
 #let marker-functions = json("marker-functions.json")
 
@@ -13,7 +13,7 @@
   #platinum-table(
     left-align-cols: (1, 2),
     tnum-cols: (3, 4),
-    columns: (7%, 23%, 23%, 16%, 16%, 16%),
+    columns: (7%, 23%, 23%, 17%, 17%, 14%),
     table.header(
       [No.],
       align(left)[Marker],
@@ -27,8 +27,8 @@
         [#(i + 1)],
         [#marker.name],
         [#function],
-        pad(x: 0.5em, text(fill: rank-to-color(marker.result.rank))[*#numfmt(marker.result.value) #marker.unit*]),
-        [#rangefmt(marker.logic_operator)],
+        pad(x: 0.5em, text(fill: rank-to-color(marker.result.rank))[*#numfmt(marker.result.value, e-notation: false) #marker.unit*]),
+        [#rangefmt(marker.logic_operator, e-notation: false) #marker.unit],
         [#rank-to-retest-interval(marker.result.rank)],
       )
     },

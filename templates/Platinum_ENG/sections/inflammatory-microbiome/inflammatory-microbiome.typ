@@ -1,4 +1,4 @@
-#import "../lib.typ": *
+#import "../../lib.typ": *
 
 #let interpretations = json("interpretations.json")
 

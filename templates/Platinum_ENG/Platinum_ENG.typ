@@ -1,17 +1,17 @@
 #import "lib.typ": *
-#import "front-cover/front-cover.typ": front-cover
-#import "at-a-glance/at-a-glance.typ": at-a-glance
-#import "pathogen-opportunistic-bacteria/pathogen-opportunistic-bacteria.typ": pathogen-opportunistic-bacteria
-#import "intestinal-health-markers/intestinal-health-markers.typ": intestinal-health-markers
-#import "microbial-ecosystem-overview/microbial-ecosystem-overview.typ": microbial-ecosystem-overview
-#import "non-bacterial-members/non-bacterial-members.typ": non-bacterial-members
-#import "commensal-keystone-bacteria/commensal-keystone-bacteria.typ": commensal-keystone-bacteria
-#import "probiotic-bacterial-members/probiotic-bacterial-members.typ": probiotic-bacterial-members
-#import "scfa-producers/scfa-producers.typ": scfa-producers
-#import "inflammatory-microbiome/inflammatory-microbiome.typ": inflammatory-microbiome
-#import "fifty-abundant-species/fifty-abundant-species.typ": fifty-abundant-species
-#import "appendix/appendix.typ": appendix
-#import "back-cover/back-cover.typ": back-cover
+#import "sections/front-cover/front-cover.typ": front-cover
+#import "sections/at-a-glance/at-a-glance.typ": at-a-glance
+#import "sections/pathogen-opportunistic-bacteria/pathogen-opportunistic-bacteria.typ": pathogen-opportunistic-bacteria
+#import "sections/intestinal-health-markers/intestinal-health-markers.typ": intestinal-health-markers
+#import "sections/microbial-ecosystem-overview/microbial-ecosystem-overview.typ": microbial-ecosystem-overview
+#import "sections/non-bacterial-members/non-bacterial-members.typ": non-bacterial-members
+#import "sections/commensal-keystone-bacteria/commensal-keystone-bacteria.typ": commensal-keystone-bacteria
+#import "sections/probiotic-bacterial-members/probiotic-bacterial-members.typ": probiotic-bacterial-members
+#import "sections/scfa-producers/scfa-producers.typ": scfa-producers
+#import "sections/inflammatory-microbiome/inflammatory-microbiome.typ": inflammatory-microbiome
+#import "sections/fifty-abundant-species/fifty-abundant-species.typ": fifty-abundant-species
+#import "sections/appendix/appendix.typ": appendix
+#import "sections/back-cover/back-cover.typ": back-cover
 
 #set document(
   title: [GUTolution™ Microbiome Test Platinum],

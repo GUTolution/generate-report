@@ -1,4 +1,4 @@
-#import "../lib.typ": *
+#import "../../lib.typ": *
 
 #let fifty-abundant-species(report) = page(background: standard-page-background(
   section-header: [Your 50 Most Abundant Species],

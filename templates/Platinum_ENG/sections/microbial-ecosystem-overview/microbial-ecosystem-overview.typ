@@ -1,4 +1,4 @@
-#import "../lib.typ": *
+#import "../../lib.typ": *
 #import "@preview/cetz:0.5.2"
 
 #let cluster(seg) = {
@@ -10,7 +10,7 @@
     if seg_round.at(i) < 30deg {
       if i != 0 and legend.at(i - 1) == true {
         legend.at(i) = true
-      } else if seg_round.at(i + 1) < 30deg {
+      } else if seg_round.at(i + 1) < 5deg {
         legend.at(i) = true
       }
     }
@@ -25,23 +25,19 @@
 
 #let phyla-table-row(name, data) = (
   emph(name),
-  [#data.abundance],
-  rangefmt(data.logic_operator),
+  numfmt(data.abundance, e-notation: false),
+  rangefmt(data.logic_operator, e-notation: false),
   display-phyla-rating(data.rating),
 )
 #let endotoxin-table-row(name, data) = (
   emph(name),
-  [#data.abundance],
-  rangefmt(data.logic_operator),
+  numfmt(data.abundance, e-notation: false),
+  rangefmt(data.logic_operator, e-notation: false),
   display-endotoxin-rating(data.rating),
 )
 
-#let microbial-ecosystem-overview(report) = page(
-  background: standard-page-background(
-    section-header: [Microbial Ecosystem Overview],
-  ),
-)[
-  #align(center, stack(dir: ltr, spacing: 1cm, box(align(left, text(size: 12pt)[*Phylum\ Composition*])), rect(
+#let phylum-composition(report) = {
+  align(center, stack(dir: ltr, spacing: 1cm, box(align(left, text(size: 12pt)[*Phylum\ Composition*])), rect(
     fill: rgb("#d0e7ec"),
     width: 70%,
     height: 9cm,
@@ -101,6 +97,14 @@
       }))
     ),
   )))
+}
+
+#let microbial-ecosystem-overview(report) = page(
+  background: standard-page-background(
+    section-header: [Microbial Ecosystem Overview],
+  ),
+)[
+  #phylum-composition(report)
 
   #align(center)[
     #platinum-table(

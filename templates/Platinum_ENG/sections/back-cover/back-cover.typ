@@ -1,4 +1,4 @@
-#import "../lib.typ": *
+#import "../../lib.typ": *
 
 #let contact-line(img: none, body) = box(stack(
   dir: ltr,

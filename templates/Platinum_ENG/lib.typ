@@ -1,25 +1,29 @@
 #import "@preview/hydra:0.6.3": anchor, hydra
 #import "@preview/oxifmt:1.0.0": strfmt
 
-#let numfmt(num) = {
-  let s = strfmt("{:.2E}", num)
-  if s.contains("E-") {
-    let (s1, exponent) = s.split("E-")
-    s = s1 + "E-" + strfmt("{:0>2}", int(s.split("E-").at(1)))
-  } else if s.contains("E") {
-    let (s1, exponent) = s.split("E")
-    s = s1 + "E+" + strfmt("{:0>2}", int(s.split("E").at(1)))
+#let numfmt(num, e-notation: true) = {
+  if e-notation {
+    let s = strfmt("{:.2E}", num)
+    if s.contains("E-") {
+      let (s1, exponent) = s.split("E-")
+      s = s1 + "E-" + strfmt("{:0>2}", int(s.split("E-").at(1)))
+    } else if s.contains("E") {
+      let (s1, exponent) = s.split("E")
+      s = s1 + "E+" + strfmt("{:0>2}", int(s.split("E").at(1)))
+    }
+    s
+  } else {
+    strfmt("{:.2}", num)
   }
-  s
 }
 
-#let rangefmt(range) = {
+#let rangefmt(range, e-notation: true) = {
   if range.lower == none {
-    [<#numfmt(range.upper)]
+    [<#numfmt(range.upper, e-notation: e-notation)]
   } else if range.upper == none {
-    [>#numfmt(range.lower)]
+    [>#numfmt(range.lower, e-notation: e-notation)]
   } else {
-    box(align(left)[#numfmt(range.lower) -- #numfmt(range.upper)])
+    [#numfmt(range.lower, e-notation: e-notation) -- #numfmt(range.upper, e-notation: e-notation)]
   }
 }
 
@@ -139,4 +143,4 @@
 ) [Below reference]
 #let display-endotoxin-rating(rating) = if rating == -1 [Normal] else if (
   rating == 0
-) [Borderline elevated] else [Elevated]
+) [Elevated] else [High]

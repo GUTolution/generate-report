@@ -23,6 +23,31 @@
   return legend
 }
 
+#let coalesce(seg) = {
+  let is-in-cluster-list = cluster(seg)
+  let coalesced = ()
+  for (i, is-in-cluster) in is-in-cluster-list.enumerate() {
+    if not is-in-cluster {
+      coalesced.push(none)
+    } else if coalesced.last(default: none) == none {
+      coalesced.push((i, i))
+    } else {
+      coalesced.last().at(1) = i
+    }
+  }
+  coalesced.filter(range => range != none)
+}
+
+#let relative-to-abs-angles(relative-angles) = {
+  let sum = 0deg
+  let abs-angles = ()
+  for relative-angle in relative-angles {
+    abs-angles.push(sum)
+    sum += relative-angle
+  }
+  abs-angles
+}
+
 #let phyla-table-row(name, data) = (
   emph(name),
   numfmt(data.abundance, e-notation: false),
@@ -48,16 +73,26 @@
         let data = report.microbial_ecosystem.phylum_composition
 
         group(name: "chart", {
-          let offset = 0deg
+          // let offset = 0deg
           let seg = data.map(phylum => phylum.abundance / 100 * 360deg)
           let legend_idx = cluster(seg).enumerate().filter(pair => pair.at(1)).map(pair => pair.at(0))
+          let coalesced = coalesce(seg)
+          let offsets = relative-to-abs-angles(seg)
 
-          for (index, phylum) in data.enumerate() {
+          for (index, offset) in offsets.enumerate() {
+            let phylum = data.at(index)
             stroke(white + 1pt)
             fill(pie-palette.at(calc.rem(index, 8)))
-            arc((offset, 2.5), start: offset, stop: offset + seg.at(index), mode: "PIE", radius: 2.5, name: {
-              phylum.name
-            })
+            arc(
+              (offset, 2.5),
+              start: offset,
+              delta: seg.at(index),
+              mode: "PIE",
+              radius: 2.5,
+              name: {
+                phylum.name
+              },
+            )
             anchor(phylum.name, (offset + seg.at(index) / 2, 2.5))
             if index not in legend_idx {
               content(
@@ -75,6 +110,20 @@
             offset += seg.at(index)
           }
 
+          for (index, (start, end)) in coalesced.enumerate() {
+            anchor("coalesced-" + str(index), ((offsets.at(start) + (offsets.at(end) + seg.at(end))) / 2, 2.5))
+            content(
+              ((offsets.at(start) + (offsets.at(end) + seg.at(end))) / 2, 4),
+              align(center, text(size: 10pt, [\*])),
+              name: "label",
+            )
+            line(
+              "label",
+              "coalesced-" + str(index),
+              stroke: gray,
+            )
+          }
+
           if legend_idx.len() > 0 {
             content(
               (4.5, 3.5),
@@ -82,6 +131,7 @@
               name: "legend",
               stack(
                 spacing: 0.5em,
+                text(size: 8pt)[\*Detected in trace amounts:],
                 ..for (i, index) in legend_idx.enumerate() {
                   let phylum = data.at(index)
                   (

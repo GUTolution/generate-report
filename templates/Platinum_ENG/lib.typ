@@ -138,9 +138,9 @@
 #let detected-to-retest-interval(detected) = if detected { [6-8 weeks] }
 #let rank-to-color(rank) = if rank == 2 { orange } else if rank == 3 { red } else { green }
 #let detected-to-color(detected) = if detected { red } else { green }
-#let display-phyla-rating(rating) = if rating == 1 [Above reference] else if rating == 0 [Within reference] else if (
-  rating == -1
-) [Below reference]
-#let display-endotoxin-rating(rating) = if rating == -1 [Normal] else if (
-  rating == 0
-) [Elevated] else [High]
+#let display-phyla-rating(rating) = if rating == 1 [Below reference] else if rating == 2 [Within reference] else if (
+  rating == 3
+) [Above reference]
+#let display-endotoxin-rating(rating) = if rating == 1 [Normal] else if (
+  rating == 2
+) [Borderline] else if rating == 3 [Elevated]

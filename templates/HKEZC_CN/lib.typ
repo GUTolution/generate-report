@@ -2,6 +2,9 @@
 #import "@preview/oxifmt:1.0.0": strfmt
 #import "@preview/cuti:0.4.0": cn-fakeitalic
 
+#let _i18n = yaml("i18n.yaml")
+#let i18n(str) = _i18n.at(str)
+
 #let numfmt(num, e-notation: true) = {
   if e-notation {
     let s = strfmt("{:.2E}", num)

@@ -2,7 +2,7 @@
 
 #let relative-abundance-palette = (
   "8562EA",
-  "76B9F0",
+  "3582BF",
   "67902C",
   "B83143",
   "473C38",
@@ -26,7 +26,7 @@
     en-HK: "Core bacteria",
     zh-HK: "核心菌",
   ),
-  id-label: "CB"
+  id-label: "CB",
 ) = page(margin: (x: 0pt), header: pad(x: 1.1cm, page-header(report)), footer: pad(x: 1.1cm, page-footer))[
   #set par(spacing: 0.2cm)
   #let num_bacteria = data.len()
@@ -44,7 +44,7 @@
     ..for (i, bacteria) in data.enumerate() {
       (
         text(number-width: "tabular")[#id-label #(i + 1)],
-        [#bacteria.name.zh_HK #bacteria.name.en_HK],
+        [#i18n(bacteria.name.en_HK).zh_HK #bacteria.name.en_HK],
         box(width: 92%, relative-abundance-slider(bacteria.relative_abundance - 1)),
       )
     },
@@ -61,9 +61,10 @@
         set text(size: 9pt, weight: 600)
         table(
           columns: (1fr,) * 2,
-          fill: gray.lighten(50%),
-          gutter: 0.6cm,
+          rows: (auto,) * calc.ceil(data.len() / 2),
+          gutter: 0.3cm,
           stroke: none,
+          fill: (x, y) => if (y * 2 + x) < data.len() { gray.lighten(50%) },
           inset: 0pt,
           ..for (i, bacteria) in data.enumerate() {
             (
@@ -71,7 +72,7 @@
                 dir: ttb,
                 stack(
                   dir: ltr,
-                  box(width: 78%, inset: 6pt, align(horizon)[#id-label #(i + 1) -- #bacteria.name.zh_HK]),
+                  box(width: 78%, inset: 6pt, align(horizon)[#id-label #(i + 1) -- #i18n(bacteria.name.en_HK).zh_HK]),
                   box(
                     width: 22%,
                     fill: relative-abundance-palette.at(bacteria.relative_abundance - 1),

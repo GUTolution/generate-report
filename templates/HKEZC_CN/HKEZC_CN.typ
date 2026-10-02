@@ -6,6 +6,8 @@
 #import "sections/harmful-bacteria/harmful-bacteria.typ": harmful-bacteria
 #import "sections/probiotics/probiotics.typ": probiotics
 #import "sections/parasites/parasites.typ": parasites
+#import "sections/references/references.typ": references
+#import "sections/disclaimer/disclaimer.typ": disclaimer
 
 #set document(
   title: [微生態全面測試--濕疹及過敏項目],
@@ -13,7 +15,7 @@
 
 #let production = sys.inputs.at("production", default: false)
 #let report = if production { json(sys.inputs.at("input_json")) } else {
-  json("reference/reference.json")
+  json("reference/NEUAE2313_hkezc_report.json")
 }
 #{
   report.client.date_of_birth = to-date(report.client.date_of_birth)
@@ -34,7 +36,9 @@
   core-bacteria,
   harmful-bacteria,
   probiotics,
-  parasites
+  parasites,
+  references,
+  disclaimer
 )
 
 #for (i, section) in sections.enumerate() {

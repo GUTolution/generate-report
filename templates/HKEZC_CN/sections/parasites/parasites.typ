@@ -2,23 +2,25 @@
 
 #let descriptions = yaml("descriptions.yml")
 
-#let parasite-row(parasite) = {
+#let parasite-row(parasite) = context {
+  let img = image("images/" + parasite.name.en_HK + ".png")
   box(
     fill: gray.lighten(70%),
     width: 100%,
+    height: measure(img).height,
     radius: (left: 50%, right: 20pt),
     table(
       columns: (auto, 1fr),
       inset: 0pt,
       gutter: 0.5cm,
       stroke: none,
-      image("images/" + parasite.name.en_HK + ".png"),
+      img,
       table(
         columns: (60%, 40%),
         inset: 5pt,
         align: (left + horizon, center + horizon),
         stroke: none,
-        text(size: 12pt)[*#parasite.name.zh_HK #parasite.name.en_HK*],
+        text(size: 12pt)[*#i18n(parasite.name.en_HK).zh_HK #parasite.name.en_HK*],
         pill(
           radius: (top-right: 15pt, left: 6pt, bottom-right: 6pt),
           inset: (y: 0.8em),

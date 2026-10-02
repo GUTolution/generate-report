@@ -50,6 +50,9 @@ struct GleneaglesTemplateArgs {
 #[derive(Debug, Clone, IntoValue, IntoDict)]
 struct PlatinumTemplateArgs {}
 
+#[derive(Debug, Clone, IntoValue, IntoDict)]
+struct HkezcTemplateArgs {}
+
 #[derive(Debug, Clone, Hash, PartialEq)]
 struct TypstPdfGenerationError(EcoVec<SourceDiagnostic>);
 impl Display for TypstPdfGenerationError {
@@ -68,15 +71,17 @@ fn templates() -> &'static [&'static str] {
         "Gleneagles_CN",
         "Gleneagles_CN (white label)",
         "Platinum_ENG",
+        "HKEZC_CN",
     ]
 }
 
 type Engine = Arc<TypstEngine<TypstTemplateMainFile>>;
 thread_local! {
-    static ENGINES: [Engine; 3] = [
+    static ENGINES: [Engine; 4] = [
         build_engine("Gleneagles_ENG").expect("Failed to build Gleneagles_ENG engine"),
         build_engine("Gleneagles_CN").expect("Failed to build Gleneagles_CN engine"),
-        build_engine("Platinum_ENG").expect("Failed to build Platinum_ENG engine")
+        build_engine("Platinum_ENG").expect("Failed to build Platinum_ENG engine"),
+        build_engine("HKEZC_CN").expect("Failed to build HKEZC_CN engine")
     ];
 }
 
@@ -263,6 +268,7 @@ fn main() -> anyhow::Result<()> {
                     gleneagles_eng_engine,
                     gleneagles_cn_engine,
                     platinum_eng_engine,
+                    hkezc_cn_engine,
                 ] = engines.clone();
                 thread::spawn({
                     let generate_res = generate_res.clone();
@@ -311,6 +317,12 @@ fn main() -> anyhow::Result<()> {
                                         input,
                                         platinum_eng_engine.clone(),
                                         PlatinumTemplateArgs {}.into_dict(),
+                                        template_display_name,
+                                    ),
+                                    "HKEZC_CN" => compile(
+                                        input,
+                                        hkezc_cn_engine.clone(),
+                                        HkezcTemplateArgs {}.into_dict(),
                                         template_display_name,
                                     ),
                                     _ => anyhow::Result::Err(anyhow::Error::new(StringError(

@@ -2,11 +2,19 @@
 
 #let relative-abundance-palette = (
   "8562EA",
-  "3582BF",
+  "76B9F0",
   "67902C",
   "B83143",
   "473C38",
 ).map(hex => rgb(hex))
+
+#let relative-abundance-text = (
+  "過少",
+  "輕微過少",
+  "平衡",
+  "輕微過多",
+  "過多",
+)
 
 #let relative-abundance-slider(rating) = table(
   columns: (1fr,) * 5,
@@ -27,6 +35,7 @@
     zh-HK: "核心菌",
   ),
   id-label: "CB",
+  detailed-intro-requires-extra-room: false,
 ) = page(margin: (x: 0pt), header: pad(x: 1.1cm, page-header(report)), footer: pad(x: 1.1cm, page-footer))[
   #set par(spacing: 0.2cm)
   #let num_bacteria = data.len()
@@ -50,44 +59,58 @@
     },
   )
   #v(0.7cm)
-  #pad(x: 1.1cm, {
-    rect(width: 100%, stroke: primary.darken(20%) + 1.3pt, inset: 0.7cm, {
-      align(center, text(
-        fill: primary.darken(30%),
-        size: 12pt,
-      )[*Detailed introduction of #lower(bacteria-group-name.en-HK) #{ bacteria-group-name.zh-HK }詳細講解*])
-      v(0.7cm)
-      {
-        set text(size: 9pt, weight: 600)
-        table(
-          columns: (1fr,) * 2,
-          rows: (auto,) * calc.ceil(data.len() / 2),
-          gutter: 0.3cm,
-          stroke: none,
-          fill: (x, y) => if (y * 2 + x) < data.len() { gray.lighten(50%) },
-          inset: 0pt,
-          ..for (i, bacteria) in data.enumerate() {
-            (
-              stack(
-                dir: ttb,
-                stack(
-                  dir: ltr,
-                  box(width: 78%, inset: 6pt, align(horizon)[#id-label #(i + 1) -- #i18n(bacteria.name.en_HK).zh_HK]),
-                  box(
-                    width: 22%,
-                    fill: relative-abundance-palette.at(bacteria.relative_abundance - 1),
-                    inset: 4pt,
-                    align(center + horizon, text(fill: white, size: 11pt)[輕微過少]),
+  #pad(
+    x: if not detailed-intro-requires-extra-room { 1.1cm } else { 0.2cm },
+    {
+      rect(
+        width: 100%,
+        stroke: primary.darken(20%) + 1.3pt,
+        inset: if not detailed-intro-requires-extra-room { 0.6cm } else { 0.2cm },
+        {
+          align(center, text(
+            fill: primary.darken(30%),
+            size: 12pt,
+          )[*Detailed introduction of #lower(bacteria-group-name.en-HK) #{ bacteria-group-name.zh-HK }詳細講解*])
+          v(0.4cm)
+          {
+            set text(size: 9pt, weight: 600)
+            table(
+              columns: (1fr,) * 2,
+              rows: (auto,) * calc.ceil(data.len() / 2),
+              gutter: 0.3cm,
+              stroke: none,
+              fill: (x, y) => if (y * 2 + x) < data.len() { gray.lighten(50%) },
+              inset: 0pt,
+              ..for (i, bacteria) in data.enumerate() {
+                (
+                  stack(
+                    dir: ttb,
+                    stack(
+                      dir: ltr,
+                      box(width: 78%, inset: 6pt, align(horizon)[#id-label #(i + 1) -- #i18n(
+                          bacteria.name.en_HK,
+                        ).zh_HK]),
+                      box(
+                        width: 22%,
+                        fill: relative-abundance-palette.at(bacteria.relative_abundance - 1),
+                        inset: 4pt,
+                        align(center + horizon, text(fill: white, size: 11pt, relative-abundance-text.at(
+                          bacteria.relative_abundance - 1,
+                        ))),
+                      ),
+                    ),
+                    pad(top: 4pt, x: 6pt, bottom: 15pt, text(size: if effects.at(bacteria.name.en_HK).len() > 450 {
+                      8pt
+                    } else { 9pt })[
+                      影響：#effects.at(bacteria.name.en_HK)
+                    ]),
                   ),
-                ),
-                pad(top: 4pt, x: 6pt, bottom: 15pt)[
-                  影響：#effects.at(bacteria.name.en_HK)
-                ],
-              ),
+                )
+              }
             )
           }
-        )
-      }
-    })
-  })
+        },
+      )
+    },
+  )
 ]

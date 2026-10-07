@@ -8,7 +8,7 @@
   #align(center, {
     {
       set text(size: 12pt)
-      show table.cell.where(x: 0): it => align(right + horizon, text(weight: "semibold", fill: white, it))
+      show table.cell.where(x: 0): it => align(left + horizon, text(weight: "semibold", fill: white, it))
       show table.cell.where(x: 1): it => align(left + horizon, text(weight: "bold", it))
       table(
         columns: (35%, 45%),
@@ -26,7 +26,9 @@
     v(0.8cm)
     {
       show table.cell.where(x: 1): set text(weight: "bold")
-      box(width: 80%, align(left, center-aligned-columns(
+      box(width: 80%, align(left, simple-columns(
+        align-center: false,
+        row-gutter: 1em,
         [用戶編號：],
         report.client.id,
         [出生日期：],

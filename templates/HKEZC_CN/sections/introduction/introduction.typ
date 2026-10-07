@@ -37,26 +37,31 @@
 
   #pagebreak()
 
-  = *The Role of the Gut-Brain-Skin Axis\ 【腸-腦-皮軸】的關係及針對處理濕疹及其他皮膚症狀之應用*
+  #[
+    #set text(size: 9.7pt)
+    = *The Role of the Gut-Brain-Skin Axis\ 【腸-腦-皮軸】的關係及針對處理濕疹及其他皮膚症狀之應用*
 
+    The gut microbiome, comprising trillions of microorganisms, is no longer viewed as a mere local ecosystem, but rather as a key player in our overall health and well-being. Dysbiosis, or imbalance in the gut microbiome, has been implicated in various inflammatory skin conditions, including acne, atopic dermatitis, and psoriasis. The connection between the gut and skin is complex, involving multiple pathways and mechanisms, including:\
+    由數萬億微生物組成的腸道微生物菌叢不再僅僅被視為局部生態系統，而是影響我們整體健康的關鍵之一。腸道微生物菌叢失衡與各種發炎性皮膚狀況有關，包括痤瘡、異位性皮膚炎和牛皮癬。腸道和皮膚之間的聯繫是複雜的，涉及多種途徑和機制，
+    包括:
 
-  The gut microbiome, comprising trillions of microorganisms, is no longer viewed as a mere local ecosystem, but rather as a key player in our overall health and well-being. Dysbiosis, or imbalance in the gut microbiome, has been implicated in various inflammatory skin conditions, including acne, atopic dermatitis, and psoriasis. The connection between the gut and skin is complex, involving multiple pathways and mechanisms, including:\
-  由數萬億微生物組成的腸道微生物菌叢不再僅僅被視為局部生態系統，而是影響我們整體健康的關鍵之一。腸道微生物菌叢失衡與各種發炎性皮膚狀況有關，包括痤瘡、異位性皮膚炎和牛皮癬。腸道和皮膚之間的聯繫是複雜的，涉及多種途徑和機制，
-  包括:
+    #set par(spacing: 0.8cm)
 
-  #set par(spacing: 0.5cm)
+    - *Metabolic pathways* 代謝途徑: The gut microbiome influences the skin through the production of short-chain fatty acids, which modulate the immune system and regulate inflammation. These metabolites also play a crucial role in maintaining the integrity of the skin barrier, regulating epidermal differentiation, and modulating the expression of genes involved in skin homeostasis.\ 腸道微生物菌叢透過產生短鏈脂肪酸來影響皮膚，短鏈脂肪酸可以調節免疫系統和調節發炎。這些代謝物在維持皮膚屏障的完整性、調節表皮分化和調節皮膚穩態相關的基因表現方面也起著至關重要的作用。
 
-  - *Metabolic pathways* 代謝途徑: The gut microbiome influences the skin through the production of short-chain fatty acids, which modulate the immune system and regulate inflammation. These metabolites also play a crucial role in maintaining the integrity of the skin barrier, regulating epidermal differentiation, and modulating the expression of genes involved in skin homeostasis.\ 腸道微生物菌叢透過產生短鏈脂肪酸來影響皮膚，短鏈脂肪酸可以調節免疫系統和調節發炎。這些代謝物在維持皮膚屏障的完整性、調節表皮分化和調節皮膚穩態相關的基因表現方面也起著至關重要的作用。
+    - *Immunological pathways* 免疫途徑: The gut microbiome influences the immune system, regulating inflammation and modulating the immune response. The gut-associated lymphoid tissue (GALT) and skin-associated lymphoid tissue (SALT) are key components of the immune system, and dysbiosis can lead to impaired immune function and increased susceptibility to skin disorders.\ 腸道微生物菌叢影響免疫系統，調節發炎和免疫反應。腸道相關淋巴組織(GALT)和皮膚相關淋巴組織(SALT)是免疫系統的關鍵組成部分，生態失調可導致免疫功能受損和對皮膚疾病的敏感度增加。
 
-  - *Immunological pathways* 免疫途徑: The gut microbiome influences the immune system, regulating inflammation and modulating the immune response. The gut-associated lymphoid tissue (GALT) and skin-associated lymphoid tissue (SALT) are key components of the immune system, and dysbiosis can lead to impaired immune function and increased susceptibility to skin disorders.\ 腸道微生物菌叢影響免疫系統，調節發炎和免疫反應。腸道相關淋巴組織(GALT)和皮膚相關淋巴組織(SALT)是免疫系統的關鍵組成部分，生態失調可導致免疫功能受損和對皮膚疾病的敏感度增加。
+    - *Neuroendocrine pathways* 神經內分泌途徑: The gut microbiome produces neurotransmitters and hormones, such as serotonin, dopamine, and cortisol, which influence mood, behavior, and skin health. The gut-brain-skin axis is a complex network of bidirectional communication, where the gut microbiome influences the brain, and the brain, in turn, influences the gut and skin.\ 腸道微生物菌叢產生神經傳導物質和激素，如血清素、多巴胺和皮質醇，它們影響情緒、行為和皮膚健康。腸-腦-皮軸是一個雙向交流的複雜網絡，腸道微生物菌叢會影響大腦，大腦反過來影響腸道和皮膚。
 
-  - *Neuroendocrine pathways* 神經內分泌途徑: The gut microbiome produces neurotransmitters and hormones, such as serotonin, dopamine, and cortisol, which influence mood, behavior, and skin health. The gut-brain-skin axis is a complex network of bidirectional communication, where the gut microbiome influences the brain, and the brain, in turn, influences the gut and skin.\ 腸道微生物菌叢產生神經傳導物質和激素，如血清素、多巴胺和皮質醇，它們影響情緒、行為和皮膚健康。腸-腦-皮軸是一個雙向交流的複雜網絡，腸道微生物菌叢會影響大腦，大腦反過來影響腸道和皮膚。
+    #align(center, image("images/gut-brain-skin-axis.jpg"))
+  ]
 
-  #align(center, image("images/gut-brain-skin-axis.jpg"))
 
   #page(background: align(bottom, {
-    box(height: 35%, fill: gray.lighten(70%), width: 100%)
+    box(height: 38.5%, fill: gray.lighten(70%), width: 100%)
   }))[
+    #set text(size: 9.7pt)
+    #set par(spacing: 0.7cm)
     = *The Limitations of Generic Probiotics\ 通用益生菌的局限性*
 
     Generic probiotics have long been touted as a solution for gut health, but they are often a one-size-fits-all approach. This can lead to inconsistent results and limited efficacy. Generic probiotics may not colonize the gut effectively, may not produce the desired metabolites, or may even exacerbate existing conditions. Furthermore, the gut microbiome is highly individualized, and what works for one person may not work for another.
@@ -69,10 +74,12 @@
 
     精準益生菌是解鎖益生菌潛力的契機，並為皮膚病學領域帶來重大改變。透過針對腸道微生物菌叢，我們可以恢復腸道微生物平衡，緩解皮膚症狀。而先進的腸道微生物菌叢測序和人工智能技術正正是開發精準益生菌關鍵。
 
-    #v(1cm)
+    #v(1.3cm)
     #align(center)[
-      *Microbiome Precision: Pioneering the Gut-Skin Axis with Probiotics\ Effectiveness on handling eczema and allergy cases*\
-      #text(weight: 500)[精準微生態：利用益生菌開創【腸皮軸】\ 處理濕疹及敏感體質的有效性]
+      #text(
+        size: 11pt,
+      )[*Microbiome Precision: Pioneering the Gut-Skin Axis with Probiotics\ Effectiveness on handling eczema and allergy cases*\
+        #text(weight: 500)[精準微生態：利用益生菌開創【腸皮軸】\ 處理濕疹及敏感體質的有效性]]
 
       #set text(fill: white, weight: "bold")
       #table(
@@ -117,46 +124,46 @@
 
   = *科學化了解腸道微生態 -- 為免疫系統提供更全面數據分析*
   #pad(x: 0.75pt, rect(stroke: primary + 1.5pt, inset: (y: 2em, x: 1em), width: 100%)[
-  綜合分析 1）核心菌、2）有害菌、3）益生菌 以及 4）寄生蟲 四個主要因素之數據
+    綜合分析 1）核心菌、2）有害菌、3）益生菌 以及 4）寄生蟲 四個主要因素之數據
 
-  #show table.cell: set text(size: 10pt)
-  #table(
-    columns: (1fr,) * 2,
-    gutter: 1cm,
-    inset: 1em,
-    stroke: none,
-    fill: (x, y) => rgb(if (x, y) == (0, 0) {
-      "C8D5FF"
-    } else if (x, y) == (1, 0) {
-      "FFCCCC"
-    } else if (x, y) == (0, 1) {
-      "C5FFC2"
-    } else if (x, y) == (1, 1) {
-      "DFC0FF"
-    } else {
-      "D9D9D9"
-    }).transparentize(66%),
-    [*因素一：核心菌*
+    #show table.cell: set text(size: 10pt)
+    #table(
+      columns: (1fr,) * 2,
+      gutter: 1cm,
+      inset: 1em,
+      stroke: none,
+      fill: (x, y) => rgb(if (x, y) == (0, 0) {
+        "C8D5FF"
+      } else if (x, y) == (1, 0) {
+        "FFCCCC"
+      } else if (x, y) == (0, 1) {
+        "C5FFC2"
+      } else if (x, y) == (1, 1) {
+        "DFC0FF"
+      } else {
+        "D9D9D9"
+      }).transparentize(66%),
+      [*因素一：核心菌*
 
-      核心菌是在人體內常見且具有穩定生存能力的微生物群體，對維持微生物平衡、功能和人體健康起著重要作用。核心菌能與宿主相互作用，能夠抑制有害菌、促進營養吸收、支持免疫系統等。當核心菌群失衡時，可能導致免疫功能低下、過敏及炎症等問題。
-    ],
-    [*因素二：有害菌*
+        核心菌是在人體內常見且具有穩定生存能力的微生物群體，對維持微生物平衡、功能和人體健康起著重要作用。核心菌能與宿主相互作用，能夠抑制有害菌、促進營養吸收、支持免疫系統等。當核心菌群失衡時，可能導致免疫功能低下、過敏及炎症等問題。
+      ],
+      [*因素二：有害菌*
 
-      腸道微生物菌叢中的致病細菌會破壞微生物平衡，導致感染、炎症及疾病。有害菌的主要來源包括受污染的食物和水、空氣中的病菌、接觸受感染的人或物體，以及環境中的污染物。它們能夠通過口腔、皮膚破損處或呼吸道等途徑進入人體，擾亂體內的微生物平衡，導致疾病。
-    ],
-    [*因素三：益生菌*
+        腸道微生物菌叢中的致病細菌會破壞微生物平衡，導致感染、炎症及疾病。有害菌的主要來源包括受污染的食物和水、空氣中的病菌、接觸受感染的人或物體，以及環境中的污染物。它們能夠通過口腔、皮膚破損處或呼吸道等途徑進入人體，擾亂體內的微生物平衡，導致疾病。
+      ],
+      [*因素三：益生菌*
 
-      益生菌是活的微生物，攝取足夠數量的益生菌可為宿主帶來健康益處。它們存在於發酵食品、膳食補充劑和特定乳製品中，透過與病原體抗爭、產生抗菌物質、調節免疫反應和強化腸道屏障等機制發揮作用。在飲食中包括富含益生菌的食物或補充劑，可以幫助消化系統健康，增強免疫系統，提高整體健康水平。
-    ],
-    [*因素四：寄生蟲*
+        益生菌是活的微生物，攝取足夠數量的益生菌可為宿主帶來健康益處。它們存在於發酵食品、膳食補充劑和特定乳製品中，透過與病原體抗爭、產生抗菌物質、調節免疫反應和強化腸道屏障等機制發揮作用。在飲食中包括富含益生菌的食物或補充劑，可以幫助消化系統健康，增強免疫系統，提高整體健康水平。
+      ],
+      [*因素四：寄生蟲*
 
-      寄生蟲是指依賴宿主生存、從宿主體內或體外獲取養分的生物。它們通常會對宿主造成不同程度的損害，從輕微的不適到嚴重的疾病。它們通過各種方式進入宿主體內，如經由污染的食物或水源、直接接觸等。寄生蟲感染可導致貧血、過敏反應、免疫系統過度活躍或免疫功能受損、腹痛、腹瀉、噁心、嘔吐等問題。
-    ],
-    table.cell(colspan: 2)[
-      *服用益生菌的科學*
+        寄生蟲是指依賴宿主生存、從宿主體內或體外獲取養分的生物。它們通常會對宿主造成不同程度的損害，從輕微的不適到嚴重的疾病。它們通過各種方式進入宿主體內，如經由污染的食物或水源、直接接觸等。寄生蟲感染可導致貧血、過敏反應、免疫系統過度活躍或免疫功能受損、腹痛、腹瀉、噁心、嘔吐等問題。
+      ],
+      table.cell(colspan: 2)[
+        *服用益生菌的科學*
 
-      腸道微生物菌叢是生活在腸道中的微生物群體，在消化、免疫系統、大腦功能、新陳代謝和疾病預防方面發揮著至關重要的作用。腸道微生物菌叢失衡會導致一系列健康問題。為了防止這種情況的發生，我們的精準益生菌計畫旨在恢復平衡，促進腸道微生物菌叢的健康。透過改善消化和免疫功能，精準益生菌可以幫助您保持最佳狀態。益生菌是由細菌和酵母菌組成的有益微生物，服用益生菌可以改善腸道微生物菌叢的功能和整體平衡。我們體內的微生物菌叢龐大而複雜，因此我們的精準益生菌方案會根據您的腸道狀況精心挑選合適的益生菌。
-    ],
-  )])
+        腸道微生物菌叢是生活在腸道中的微生物群體，在消化、免疫系統、大腦功能、新陳代謝和疾病預防方面發揮著至關重要的作用。腸道微生物菌叢失衡會導致一系列健康問題。為了防止這種情況的發生，我們的精準益生菌計畫旨在恢復平衡，促進腸道微生物菌叢的健康。透過改善消化和免疫功能，精準益生菌可以幫助您保持最佳狀態。益生菌是由細菌和酵母菌組成的有益微生物，服用益生菌可以改善腸道微生物菌叢的功能和整體平衡。我們體內的微生物菌叢龐大而複雜，因此我們的精準益生菌方案會根據您的腸道狀況精心挑選合適的益生菌。
+      ],
+    )])
 
 ]

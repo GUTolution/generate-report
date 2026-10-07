@@ -3,7 +3,7 @@ import yaml
 import functools
 import operator
 
-with open("temp/NEUAE2313_hkezc_report.json") as input_json:
+with open("temp/NEUAE2313_hkezc_report_new.json") as input_json:
     input_json_parsed = json.load(input_json)
     a = set(functools.reduce(operator.iconcat, [
         [str(bacteria["name"]["en_HK"])

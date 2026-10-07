@@ -38,7 +38,15 @@
 #let cyan = rgb("329BA9")
 #let bluegray = rgb("516978")
 
-#let pill(radius: 50%, inset: (y: 1em, x: 0.5em), fill: primary, text-fill: white, width: auto, height: auto, body) = box(
+#let pill(
+  radius: 50%,
+  inset: (y: 1em, x: 0.5em),
+  fill: primary,
+  text-fill: white,
+  width: auto,
+  height: auto,
+  body,
+) = box(
   radius: radius,
   fill: fill,
   inset: inset,
@@ -68,13 +76,14 @@
   body
 }
 
-#let center-aligned-columns(..rows) = table(
+#let simple-columns(align-center: true, row-gutter: 0.5em, ..rows) = table(
   columns: 2,
   stroke: none,
   inset: 0em,
   gutter: 0.5em,
+  row-gutter: row-gutter,
   ..for (i, content) in rows.pos().enumerate() {
-    (align(if calc.rem(i, 2) == 0 { right } else { left } + bottom, content),)
+    (align(if calc.rem(i, 2) == 0 and align-center { right } else { left } + bottom, content),)
   },
 )
 
@@ -91,13 +100,13 @@
     columns: (28%, 32%, 40%),
     stroke: none,
     text(size: 12pt)[*#report.client.name*],
-    center-aligned-columns(
+    simple-columns(
       [出生日期 DOB:],
       [*#report.client.date_of_birth.display(date-format)*],
       [性別 Gender:],
       [*#report.client.gender*],
     ),
-    center-aligned-columns(
+    simple-columns(
       [收集日期 Date of Collection:],
       [*#report.sample.collected_date.display(date-format)*],
       [報告日期 Report date:],

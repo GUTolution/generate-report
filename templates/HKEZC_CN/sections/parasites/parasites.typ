@@ -22,7 +22,7 @@
         stroke: none,
         text(size: 12pt)[*#i18n(parasite.name.en_HK).zh_HK #parasite.name.en_HK*],
         pill(
-          radius: (top-right: 15pt, left: 6pt, bottom-right: 6pt),
+          radius: 50%,
           inset: (y: 0.8em),
           width: 100%,
           fill: if parasite.result { rgb("C0504D") } else { primary },

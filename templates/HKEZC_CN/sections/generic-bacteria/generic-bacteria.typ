@@ -58,7 +58,10 @@
       )
     },
   )
-  #v(0.7cm)
+  #if detailed-intro-requires-extra-room [
+    #pagebreak()
+    #pad(x: 1.1cm, heading(level: 1, section-heading))
+  ] else [#v(0.7cm)]
   #pad(
     x: if not detailed-intro-requires-extra-room { 1.1cm } else { 0.2cm },
     {
@@ -77,7 +80,7 @@
             table(
               columns: (1fr,) * 2,
               rows: (auto,) * calc.ceil(data.len() / 2),
-              gutter: 0.3cm,
+              gutter: 0.15cm,
               stroke: none,
               fill: (x, y) => if (y * 2 + x) < data.len() { gray.lighten(50%) },
               inset: 0pt,

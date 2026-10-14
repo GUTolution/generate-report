@@ -4,23 +4,19 @@
 #let cluster(seg) = {
   let seg_round = seg
   seg_round.push(seg.at(0))
-  let legend = (false,) * seg.len()
+  let is-in-cluster = (false,) * seg.len()
 
   for i in range(seg.len()) {
-    if seg_round.at(i) < 50deg {
-      if i != 0 and legend.at(i - 1) == true {
-        legend.at(i) = true
+    if seg_round.at(i) < 90deg {
+      if i != 0 and is-in-cluster.at(i - 1) == true {
+        is-in-cluster.at(i) = true
       } else if seg_round.at(i + 1) < 5deg {
-        legend.at(i) = true
+        is-in-cluster.at(i) = true
       }
     }
   }
 
-  if seg.at(0) < 30deg and legend.at(seg.len()) == true {
-    legend.at(0) == true
-  }
-
-  return legend
+  return is-in-cluster
 }
 
 #let coalesce(seg) = {

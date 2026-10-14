@@ -10,7 +10,7 @@
     if seg_round.at(i) < 90deg {
       if i != 0 and is-in-cluster.at(i - 1) == true {
         is-in-cluster.at(i) = true
-      } else if seg_round.at(i + 1) < 5deg {
+      } else if seg_round.at(i + 1) < 20deg {
         is-in-cluster.at(i) = true
       }
     }

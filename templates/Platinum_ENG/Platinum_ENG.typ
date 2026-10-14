@@ -19,18 +19,12 @@
 
 #let production = sys.inputs.at("production", default: false)
 #let report = if production { json(sys.inputs.at("input_json")) } else {
-  json("reference/MEUAN8854_platinum_report.json")
+  json("reference/MEXAN0374_platinum_report.json")
 }
 #{
   report.sample_collected_date = to-date(report.sample_collected_date)
   report.client.date_of_birth = to-date(report.client.date_of_birth)
   let phylum_composition_sum = report.microbial_ecosystem.phylum_composition.map(phylum => phylum.abundance).sum()
-  if phylum_composition_sum < 100 {
-    report.microbial_ecosystem.phylum_composition.push((
-      name: "Others",
-      abundance: 100 - phylum_composition_sum,
-    ))
-  }
 }
 
 #show: style

@@ -15,7 +15,7 @@
 
 #let production = sys.inputs.at("production", default: false)
 #let report = if production { json(sys.inputs.at("input_json")) } else {
-  json("reference/NEUAE2313_hkezc_report_new.json")
+  json("reference/NEUAE2313_hkezc_report.json")
 }
 #{
   report.client.date_of_birth = to-date(report.client.date_of_birth)

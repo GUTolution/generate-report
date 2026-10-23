@@ -1,8 +1,9 @@
 #import "../../lib.typ": *
 
 #let front-cover(report) = page[
-  = #text(weight: "bold")[mNGS (metagenomic next generation sequencing) technology -- microbiome analysis in Hong Kong Science Park's laboratory]\ mNGS（次世代宏基因測序）技術 -- 香港科學園實驗室微生物組分析
-
+  = #text(weight: "bold")[mNGS (metagenomic next generation sequencing) technology -- microbiome analysis in Hong Kong Science Park's laboratory]\ 次世代宏基因測序技術 -- 香港科學園實驗室微生物組分析
+  \
+  \
   == 報告資料
   #v(1cm)
   #align(center, {

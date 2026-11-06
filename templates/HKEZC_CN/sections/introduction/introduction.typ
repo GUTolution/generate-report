@@ -29,7 +29,7 @@
   }
   #v(1fr)
   #text(size: 8pt, fill: primary.darken(10%))[
-    #underline(offset: 0.25em, stroke: 0.5pt)[*Disclaimer 免責聲明*]\
+    #underline(offset: 0.25em, stroke: 0.5pt)[*Disclaimer 免責聲明：*]\
     Precision Probiotics Programs are not intended to diagnose, cure, or prevent any disease or medical condition. Our program is designed to support and optimize gut health but is not a substitute for medical advice from a licensed healthcare professional. The program has not been evaluated by the Food and Drug Administration (FDA) and we cannot make any claims regarding the safety or efficacy of our program for any specific medical condition. As with any supplement or health program, there are risks associated with any Precision Probiotics Program. Please consult with your healthcare provider before starting our program if you have any pre-existing medical conditions or medical circumstances.\
     精準益生菌計劃無意診斷、治療或預防任何疾病或病症。我們的計劃旨在支持和優化腸道健康，但不能取代持證醫療保健專業人員的醫療建議。本計劃未經美國食品藥物管理局評估，我們不能聲稱本計劃對任何特定病症的安全性或有效性。與任何補充劑或健康計劃一樣，任何精準益生菌計劃都存在相關風險。如果您有任何既往病症或醫療狀況，請在開始我們的計畫之前諮詢您的醫療保健提供者。
   ]
@@ -72,7 +72,7 @@
 
     Precision probiotics have the potential to unlock the full potential of probiotics and transform the field of dermatology. By targeting the gut microbiome, we can restore microbial balance and alleviate symptoms of skin conditions. The use of advanced gut microbiome sequencing and AI technology is key to developing these precision probiotics.
 
-    精準益生菌是解鎖益生菌潛力的契機，並為皮膚病學領域帶來重大改變。透過針對腸道微生物菌叢，我們可以恢復腸道微生物平衡，緩解皮膚症狀。而先進的腸道微生物菌叢測序和人工智能技術正正是開發精準益生菌關鍵。
+    精準益生菌是解鎖益生菌潛力的契機，並為皮膚病學領域帶來重大改變。透過針對腸道微生物菌叢，我們可以恢復腸道微生物平衡，緩解皮膚症狀。而先進的腸道微生物菌叢測序和人工智能技術正正是開發精準益生菌的關鍵。
 
     #v(1.3cm)
     #align(center)[

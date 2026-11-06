@@ -36,7 +36,7 @@
 
 #let parasites(report) = page[
   #let parasites-len = report.parasites.len()
-  = *Parasite Test Report -- #parasites-len in total\ 寄生蟲檢測結果 -- 共分析#{ parasites-len }種*
+  = *Parasite Test Report -- #parasites-len types in total\ 寄生蟲檢測結果 -- 共分析#{ parasites-len }種*
 
   #rect(width: 100%, stroke: primary.darken(20%) + 1.3pt, inset: 0.7cm, {
     par(text(

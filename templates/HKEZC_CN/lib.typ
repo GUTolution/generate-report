@@ -109,7 +109,7 @@
     simple-columns(
       [收集日期 Date of Collection:],
       [*#report.sample.collected_date.display(date-format)*],
-      [報告日期 Report date:],
+      [報告日期 Report Date:],
       [*#report.report_date.display(date-format)*],
     ),
   )))

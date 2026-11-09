@@ -65,7 +65,7 @@
     rect(
       fill: rgb("#d0e7ec"),
       width: 70%,
-      height: 7.5cm,
+      height: 8.5cm,
       (
         align(center + horizon, cetz.canvas({
           import cetz.draw: *
